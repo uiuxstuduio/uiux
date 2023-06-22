@@ -1,0 +1,70 @@
+@import "../../assets/scss/abstracts/variables";
+
+.formCustom {
+    &.settings {
+        @media screen and (max-width: 991px) {
+            .row > div:first-child {
+                border-bottom: 1px solid #363636;
+            }
+        }
+        @media screen and (min-width: 992px) {
+            .row > div:first-child {
+                border-right: 1px solid #363636;
+            }
+        }
+    }
+
+    form{
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: $white;
+            opacity: 0.5;
+            font-family: $Inter-Regular;
+        }
+        .user-input{
+            border: 1px solid #363636;
+            background: transparent;
+            border-radius: 0;
+            outline: none;
+            line-height: 19px;
+            &:focus{
+                border-color: $primary-color;
+            }
+        }               
+        .btn_wrapper{
+            &.full{
+                width: 100%;
+            }
+            label{
+                opacity: 1;
+            }
+        }
+        .form-group{
+            div{
+                display: flex;
+                @media screen and (max-width:1199px) {
+                    display: block;
+                }
+                .btn_wrapper{
+                    margin-left: 10px;
+                    @media screen and (max-width:1199px) {
+                        margin-left: 0;
+                        width: 100%;
+                        margin-top: 15px;
+                    }
+                }
+            }
+            p{
+                font-family: $Inter-Regular;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: $white;
+                opacity: 0.3;
+                margin-top: 7px;
+            }
+        }
+    }
+}

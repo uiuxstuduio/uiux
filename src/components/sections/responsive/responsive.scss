@@ -1,0 +1,18 @@
+.ResponsiveWrapper{
+  .cardSlider{
+    .swiper-slide{
+      &:hover {
+        transform: scale(1.04);
+        @media screen and (max-width:768px) {
+            transform: scale(1);
+        }
+      }
+    }
+    .cardBlock{
+      height: 660px;
+      @media screen and (max-width:575px) {
+        max-height: 600px;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@import "../../assets/scss/abstracts/variables";
+
+.checkout-form {
+  .form-group {
+    label {
+      font-size: 16px;
+      opacity: 0.5;
+    }
+
+    input,
+    select {
+      background-color: transparent;
+      outline: none;
+      border: 1px solid #4d4d4d;
+      height: 50px;
+      margin-bottom: 20px;
+      color: white;
+
+      &::placeholder {
+        color: white;
+        opacity: 0.15;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    select {
+      background-color: #141414;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e") !important;
+    }
+  }
+}
+
+.order-card {
+  background-color: #1e1e1e;
+  border-radius: 0.8rem;
+
+  .order-items {
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      background-color: rgba(0, 0, 0, 0);
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 5px;
+      box-shadow: inset 0 0 0 12px rgba(255, 255, 255, 0.37);
+    }
+
+    .list-item {
+      display: flex;
+      gap: 10px;
+
+      .left-block {
+        .card_img {
+          width: 78px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+          }
+        }
+      }
+
+      .right-block {
+        display: flex;
+        flex-direction: column;
+        vertical-align: text-bottom;
+
+        p:not(.highlight) {
+          opacity: 0.5;
+          // line-height: 0.9rem;
+        }
+
+        .highlight {
+          opacity: 1;
+          font-size: 14px;
+          // line-height: 1.06rem;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .subTotal,
+  .grandTotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    span {
+      font-family: $Inter-Medium;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: $white;
+    }
+  }
+
+  .subTotal {
+    opacity: 0.5;
+  }
+}

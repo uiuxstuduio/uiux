@@ -1,0 +1,230 @@
+@import "../../assets/scss/abstracts/variables";
+
+/* BREADCRUMB TITLE */
+.closeIcon{
+    margin-bottom: 18px;
+    margin-right: 0;
+    margin-left: auto;
+    font-size: 0;
+    line-height: 0;
+    display: block;
+}
+
+.inner_wrapper{
+    .card_block {
+        min-height: 400px;
+        .message-box {
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+            margin: auto;
+            height: 400px;
+            align-items: center;
+            justify-content: center;
+        }
+        .single_card {
+            .left_block {
+                .card_img {
+                    max-width: 100px;
+                    max-height: 100px;
+                    overflow: hidden;
+                    border-radius: 10px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                .card_details {
+                    h2 {
+                        max-width: 485px;
+                    }
+                }
+            }
+            .right_block{
+                .priceBlock{
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                    display: block;
+                    text-align: right;
+                }
+            }
+        }
+        @media(max-width: 767px){
+            min-height: 200px;
+            & .message-box {
+                height: 200px;
+                width: 85%;
+            }
+        }
+    }
+    &.cartInner{        
+        .card_block {
+            min-height: auto;
+            .single_card {
+                display: flex;
+                justify-content: space-between;
+                border: 1px solid #1E1E1E;
+                border-radius: 12px;
+                padding: 15px;
+                margin-bottom: 15px;
+                @media(max-width: 767px){
+                    display: block;
+                }
+                .left_block {
+                    @media(max-width: 575px){
+                        display: block;
+                    }
+                    .card_img {
+                        width: 100px;
+                        height: 100px;
+                        overflow: hidden;
+                        border-radius: 10px;
+                        @media(max-width: 1199px){
+                            width: 60px;
+                            height: 60px;
+                        }
+                        @media(max-width: 575px){
+                            margin: 0 auto 10px;
+                        }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    .card_details {
+                        @media(max-width: 1199px){
+                            font-size: 14px;
+                            width: 100%;
+                            max-width: calc(100% - 70px);
+                        }
+                        @media(max-width: 575px){
+                            max-width: 100%;
+                            text-align: center;
+                        }
+                        h2 {
+                            max-width: 485px;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 1.3;
+                            color: #fff;
+                            margin-bottom: 8px;
+                            @media(max-width: 1199px){
+                                font-size: 14px;
+                                width: 100%;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                }
+                .right_block{
+                    margin-left: 10px;
+                    @media(max-width: 767px){
+                        margin-left: 0;
+                        margin-top: 10px;
+                        display: flex;
+                        align-items: center;
+                        span{
+                            margin-right: 10px;
+                            margin-bottom: 0;
+                        }
+                        a{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.orderDetails{
+    background: #1E1E1E;
+    border-radius: 12px;
+    padding: 22px 20px;
+    @media(max-width: 991px){
+        margin-top: 30px;
+    }
+    h2{
+        font-family: $Inter-Bold ;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 27px;
+        color: $white;
+        margin-bottom: 20px;
+    }
+    .subTotal,.grandTotal,.secure{
+        display: flex;
+        justify-content: space-between;
+        opacity: 0.5;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        span{
+            font-family: $Inter-Medium;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: $white;
+        }
+    }
+    .grandTotal,.secure{
+        opacity: 1;
+        padding-bottom: 0;
+        border: 0;
+    }
+    .couponBlock{
+        background: #141414;
+        border-left: 2px solid $primary-color;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 11px;
+        text-align: center;
+        font-family: $Inter-Regular;
+        padding: 12px;
+        margin-bottom: 20px;
+        a{
+            color: $primary-color;
+            text-decoration: underline;
+            transition: color 0.5s ease;
+            &:hover{
+                color: $white;
+                text-decoration: underline;
+            }
+        }
+    }
+    .secure{
+        margin-top: 15px;
+        margin-bottom: 0;
+        justify-content: center;
+        img{
+            margin-right: 5px;
+        }
+    }
+}
+
+
+.title_block{
+    padding-top: 152px;
+    padding-bottom: 80px;
+    text-align: center;
+    h1,h2,h3,h4,h5,h6{
+        font-family: $clashdisplay-semibold;
+        font-weight: 600;
+        font-size: 42px;
+        line-height: 52px;
+        color: $white;
+        margin-bottom: 14px;
+        @media screen and (max-width:1399px) {
+            font-size: 38px;
+            line-height: 48px;            
+        }
+        @media screen and (max-width:1199px) {
+            font-size: 32px;
+            line-height: 44px;            
+        }
+    }
+}

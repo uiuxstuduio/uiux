@@ -1,0 +1,10 @@
+@import "../../assets/scss/abstracts/variables";
+
+.formCustom{
+    .btn_wrapper{
+        margin-left: auto;
+        @media(max-width: 991px){
+            margin: auto;
+        }
+    }
+}

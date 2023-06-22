@@ -1,0 +1,87 @@
+@import  "../../assets/scss/abstracts/variables";
+
+.AuthWrapper{
+    background:#000 url("../../assets/images/background/bkg-1.png");
+    background-repeat: repeat-y;
+    background-position: 0 0;
+    background-size: 100% auto;
+    animation: 145s backgroundloop infinite linear;
+    position: relative;
+    background-attachment: fixed;
+    height: 100vh;
+    margin-bottom: 0;
+    &::after{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: linear-gradient(180deg, rgba(20, 20, 20, 0) 0%, #141414 100%), linear-gradient(180deg, rgba(20, 20, 20, 0.6) 0%, rgba(20, 20, 20, 0.11) 21.88%, rgba(20, 20, 20, 0) 100%), linear-gradient(271deg, rgba(20, 20, 20, 0.09) 0.81%, rgba(20, 20, 20, 0.72) 68.38%, rgba(20, 20, 20, 0.846) 99.09%);
+        left: 0;
+        top: 0;
+    }
+    .logo_content {
+        position: relative;
+        z-index: 999;
+        font-size: 0;
+        line-height: 0;
+        padding: 24px 0;
+        @media screen and (max-width:991px) {
+            a{
+                margin: auto;
+                display: block;
+                max-width: max-content;
+            }
+        }
+        @media(max-width: 575px) {
+            padding:18px 0;
+        }
+    }
+    .authBlock {
+        position: absolute;
+        z-index: 9;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 60px;
+        width: 100%;
+        max-width: 450px;
+        @media(max-width: 991px) {
+            padding: 40px;
+        }
+        @media(max-width: 767px) {
+            padding: 30px;
+        }
+        @media(max-width: 575px) {
+            max-width: 95%;
+            padding: 20px;
+        }
+        .heading{
+            margin-bottom: 16px;
+        }
+    }
+    .text_block{
+        text-align: center;
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        line-height: 15px;
+        margin-top: 20px;
+        a{
+            margin-left: 5px;
+            padding: 0;
+            color: $primary-color;
+        }
+    }
+    .btn_wrapper{
+        border-radius: 6px;
+        overflow: hidden;
+        width: 100%;
+        @media(max-width: 575px) {
+            padding:6px 24px;
+        }
+    }
+}

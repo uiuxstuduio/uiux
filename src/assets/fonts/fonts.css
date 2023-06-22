@@ -1,0 +1,185 @@
+/************* Main Js File *******************************************
+	Template Name: UIUX STUDIO
+	Author: Netizens Technologies
+	Version: 1.0
+	Copyright 2022
+	Please ❤ this if you like it!
+***********************************************************************/
+
+/*--------------------------------------------------------------------- 
+
+    =================
+    ❤ FONTS INDEX ❤
+    =================
+    01 - CLASH DISPLAY CSS
+    02 - INTER FONT CSS
+    03 - POPPINS FONT CSS
+
+----------------------------------------------------------------------*/
+
+/*=====================================================================
+01 - CLASH DISPLAY FONT CSS
+=====================================================================*/
+@font-face {
+  font-family: 'clashdisplay-bold';
+  src: url('clash-display/clashdisplay-bold.eot') format('eot'),
+    url('clash-display/clashdisplay-bold.ttf') format('truetype'),
+    url('clash-display/clashdisplay-bold.woff') format('woff'),
+    url('clash-display/clashdisplay-bold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'clashdisplay-light';
+  src: url('clash-display/clashdisplay-light.eot') format('eot'),
+    url('clash-display/clashdisplay-light.ttf') format('truetype'),
+    url('clash-display/clashdisplay-light.woff') format('woff'),
+    url('clash-display/clashdisplay-light.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'clashdisplay-medium';
+  src: url('clash-display/clashdisplay-medium.eot') format('eot'),
+    url('clash-display/clashdisplay-medium.ttf') format('truetype'),
+    url('clash-display/clashdisplay-medium.woff') format('woff'),
+    url('clash-display/clashdisplay-medium.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'clashdisplay-regular';
+  src: url('clash-display/clashdisplay-regular.ttf') format('eot'),
+    url('clash-display/clashdisplay-regular.ttf') format('truetype'),
+    url('clash-display/clashdisplay-regular.woff') format('woff'),
+    url('clash-display/clashdisplay-regular.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'clashdisplay-semibold';
+  src: url('clash-display/clashdisplay-semibold.eot') format('eot'),
+    url('clash-display/clashdisplay-semibold.ttf') format('truetype'),
+    url('clash-display/clashdisplay-semibold.woff') format('woff'),
+    url('clash-display/clashdisplay-semibold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+/*=====================================================================
+02 - INTER FONT CSS
+=====================================================================*/
+@font-face {
+  font-family: 'Inter-Black';
+  src: url('inter/Inter-Black.eot') format('eot'), url('inter/Inter-Black.ttf') format('truetype'),
+    url('inter/Inter-Black.woff') format('woff'), url('inter/Inter-Black.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('inter/Inter-Bold.eot') format('eot'), url('inter/Inter-Bold.ttf') format('truetype'),
+    url('inter/Inter-Bold.woff') format('woff'), url('inter/Inter-Bold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-ExtraBold';
+  src: url('inter/Inter-ExtraBold.eot') format('eot'),
+    url('inter/Inter-ExtraBold.ttf') format('truetype'),
+    url('inter/Inter-ExtraBold.woff') format('woff'),
+    url('inter/Inter-ExtraBold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-ExtraLight';
+  src: url('inter/Inter-ExtraLight.eot') format('eot'),
+    url('inter/Inter-ExtraLight.ttf') format('truetype'),
+    url('inter/Inter-ExtraLight.woff') format('woff'),
+    url('inter/Inter-ExtraLight.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-Medium';
+  src: url('inter/Inter-Medium.eot') format('eot'), url('inter/Inter-Medium.ttf') format('truetype'),
+    url('inter/Inter-Medium.woff') format('woff'), url('inter/Inter-Medium.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-Regular';
+  src: url('inter/Inter-Regular.ttf') format('eot'),
+    url('inter/Inter-Regular.ttf') format('truetype'),
+    url('inter/Inter-Regular.woff') format('woff'), url('inter/Inter-Regular.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('inter/Inter-SemiBold.eot') format('eot'),
+    url('inter/Inter-SemiBold.ttf') format('truetype'),
+    url('inter/Inter-SemiBold.woff') format('woff'),
+    url('inter/Inter-SemiBold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+/*=====================================================================
+03 - POPPINS FONT CSS
+=====================================================================*/
+@font-face {
+  font-family: 'poppins-black';
+  src: url('poppins/poppins-black.eot') format('eot'),
+    url('poppins/poppins-black.ttf') format('truetype'),
+    url('poppins/poppins-black.woff') format('woff'),
+    url('poppins/poppins-black.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'poppins-bold';
+  src: url('poppins/poppins-bold.eot') format('eot'),
+    url('poppins/poppins-bold.ttf') format('truetype'),
+    url('poppins/poppins-bold.woff') format('woff'),
+    url('poppins/poppins-bold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'poppins-medium';
+  src: url('poppins/poppins-medium.eot') format('eot'),
+    url('poppins/poppins-medium.ttf') format('truetype'),
+    url('poppins/poppins-medium.woff') format('woff'),
+    url('poppins/poppins-medium.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'poppins-regular';
+  src: url('poppins/poppins-regular.woff') format('eot'),
+    url('poppins/poppins-regular.ttf') format('truetype'),
+    url('poppins/poppins-regular.woff') format('woff'),
+    url('poppins/poppins-regular.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'poppins-semi-bold';
+  src: url('poppins/poppins-semi-bold.eot') format('eot'),
+    url('poppins/poppins-semi-bold.ttf') format('truetype'),
+    url('poppins/poppins-semi-bold.woff') format('woff'),
+    url('poppins/poppins-semi-bold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'poppins-thin';
+  src: url('poppins/poppins-thin.eot') format('eot'),
+    url('poppins/poppins-thin.ttf') format('truetype'),
+    url('poppins/poppins-thin.woff') format('woff'),
+    url('poppins/poppins-thin.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}

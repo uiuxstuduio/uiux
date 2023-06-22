@@ -1,0 +1,79 @@
+@import '../../../assets/scss/abstracts/variables';
+
+.sidebar_wrapper{
+    background-image: url(../../../assets/images/sidebar_back.png), linear-gradient(180deg, #D99C1F 0%, #DEA532 100%) ;
+    border-radius: 12px;
+    padding: 25px 15px 10px 15px;
+    height: 585px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-size: auto;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    .side_logo{
+        position: absolute;
+        left: 10px;
+        top: 0;
+        z-index: 0;
+    }
+    .side_details{
+        position: relative;
+        z-index: 1;
+        .logo_name{
+            padding-left: 5px;
+            margin-bottom: 40px;
+            img{
+                line-height: 0;
+                filter: invert(1);
+                max-width: 85px;
+            }
+        }
+        p{
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.2;
+            color: #141414;
+            margin-bottom: 10px;
+            font-family: $Inter-Medium
+        }
+        h2{
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 1.2;
+            color: #141414;
+            @media(max-width: 1199px){
+                font-size: 22px;
+            }
+            span{
+                display: inline-block;
+                color: $white;
+                background: #141414;
+                border-radius: 100px;
+                padding: 5px 15px;
+            }
+        }
+    }
+    .side_bottom{
+        .price{
+            font-weight: 700;
+            font-size: 37px;
+            line-height: 1.2;
+            color: #141414;
+            margin-bottom: 15px;
+            @media(max-width: 1199px){
+                font-size: 30px;
+            }
+        }
+        .btn_wrapper{
+            border-color: #1C1C1C;
+            background-color: $black;
+            &:hover {
+                background-color: transparent;
+                color: $white;
+            }
+        }
+    }
+}
