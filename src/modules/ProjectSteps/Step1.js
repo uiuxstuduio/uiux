@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import laptopIcon from '../../assets/images/icon/laptop-icon.svg';
 
 const websiteTypes = [

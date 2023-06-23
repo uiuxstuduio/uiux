@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { slider_data } from './Data';
+// import { slider_data } from './Data';
 import cartIcon from '../../../assets/images/icon/cart.svg';
 
 

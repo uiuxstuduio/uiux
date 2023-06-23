@@ -14,9 +14,16 @@ import { useSelector } from 'react-redux';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
+  console.log('cartItems',cartItems)
   const subTotal = cartItems.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
   const extraPrices = 0;
   const total = subTotal + extraPrices;
+
+  const removeCartItem = (id) =>{
+    console.log('id',id)
+  } 
+
+
   return (
     <>
       <section>
@@ -46,7 +53,7 @@ const Cart = () => {
                                   <img src={item.theme_feature_img[0]} alt="icon" />
                                 </div>
                                 <div className="card_details">
-                                  <h2>{item.theme_name}</h2>
+                                  <h2><Link to={`/product-details/${item?.theme_id}`}>{item.theme_name}</Link></h2>
                                   <p>License type: {item.license_type}</p>
                                   <div className="rating">
                                     <img src={starYellow} alt="icon" />
@@ -58,7 +65,7 @@ const Cart = () => {
                                 </div>
                               </div>
                               <div className="right_block">
-                                <button className="closeIcon">
+                                <button className="closeIcon" type='button' onClick={()=>removeCartItem(item?.theme_id)}>
                                   <img src={close} alt="Close icon" />
                                 </button>
                                 <div className="price">

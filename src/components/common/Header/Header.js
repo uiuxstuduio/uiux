@@ -24,7 +24,7 @@ const Header = () => {
   const cart = useSelector((state) => state.cart);
   return (
     <header>
-      <nav className="navbar navbar-expand-xl">
+      <nav className="navbar navbar-expand-xl aa">
         <div className="container">
           <div className="logo">
             <Link to="/" className="navbar-brand">

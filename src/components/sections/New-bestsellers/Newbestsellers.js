@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { slider_data } from './Data';
+// import { slider_data } from './Data';
 import cartIcon from '../../../assets/images/icon/cart.svg';
 
 
@@ -19,6 +19,7 @@ import { Navigation } from 'swiper';
 
 const NewBestsellers = ({ data }) => {
   const NewBestsellersData = data['new_bestsellers'];
+//   console.log('NewBestsellersData',NewBestsellersData);
   return (
     <section className='NewBestsellers_wrapper slider_wrapper'>
         <div className='container'>
@@ -56,7 +57,7 @@ const NewBestsellers = ({ data }) => {
                 modules={[ Navigation]}
                 className="mySwiper cardSlider"
                 >
-                    {NewBestsellersData.map((val, i) => (
+                    {NewBestsellersData?.map((val, i) => (
                         <SwiperSlide key={i}>
                             <div className='cardBlock'>
                                 <Link to={`/product-details/${val.id}`} className='cardImg'>

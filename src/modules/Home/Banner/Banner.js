@@ -8,12 +8,13 @@ import download from '../../../assets/images/icon/arrow-down-square.svg';
 import star from '../../../assets/images/icon/star.svg';
 
 const Banner  = ({ data }) => {
-  const BannerData = data['banner_product'];
+  // const BannerData = data['banner_product'];
   console.log('BannerData',data)
+  const bannerData = data.banner_product[0]
   return (
     <section className="mainBanner banner_Wrapper">
       <div className="banner_bkg">
-        <img src={banner} alt="Banner Background" />
+        <img src={bannerData?.feture_image} alt="Banner Background" />
       </div>
       <div className="container">
         <div className='TextBlock'>
@@ -21,34 +22,32 @@ const Banner  = ({ data }) => {
             <div className="col-sm-12 col-md-8 col-lg-6">
               <div className="heading large">
                 <h2 className="text-uppercase">
-                  <span>NFT</span>
-                  ndecentral
+                  <span>NFT (This is static not from API)</span>
+                  {bannerData?.name}
                 </h2>
                 <div className="d-flex align-items-center ItemDiscription">
                   <div className="d-flex align-items-center">
                     <img src={doc} alt="Doc Icon" />
-                    <span>Multipage</span>
+                    <span>{bannerData?.page && bannerData.page.charAt(0).toUpperCase() + bannerData.page.slice(1)}</span>
                   </div>
                   <div className="d-flex align-items-center">
                     <img src={download} alt="Doc Icon" />
-                    <span>120 Download</span>
+                    <span>{bannerData?.sale} Download</span>
                   </div>
                   <div className="d-flex align-items-center">
                     <img src={star} alt="Doc Icon" />
-                    <span>4.5/5</span>
+                    <span>{bannerData?.review}/5</span>
                   </div>
                 </div>
                 <p>
-                  It is a long established fact that a reader will be distracted by the readable
-                  content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                  it has a more-or-less normal distribution of letters, as opposed
+                 {bannerData ? bannerData.short_description : 'No description added'}
                 </p>
                 <div className="d-flex align-items-center btnBlock">
-                  <Link className="btn_wrapper" to="/">
+                  <Link className="btn_wrapper" to={bannerData?.liveurl}>
                     Live Preview
                   </Link>
-                  <Link className="btn_wrapper light" to="/">
-                    Buy Now
+                  <Link className="btn_wrapper light" to={`product-details/${bannerData.id}`}>
+                  View detail
                   </Link>
                 </div>
               </div>

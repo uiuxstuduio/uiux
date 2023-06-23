@@ -59,30 +59,32 @@ const Home = () => {
         {Object.keys(data).length !== 0 &&
           Object.keys(data).map((key, index) => {
             // console.log("KEY", key)
-            if (index === 1)
+            if (index === 1) {
               return (
                 <Fragment key={index}>
-                  {user.user_id ? (<Banner data={data} />) : (<LoginBanner />)}
+                  {user.user_id ? <Banner data={data} /> : <LoginBanner />}
                 </Fragment>
               );
-            else if (index === 2)
+            } else if (index === 2) {
               return (
                 <section key={index}>
                   <Trending data={data} />
                 </section>
               );
-            else if (index === 3)
+            } else if (index === 3) {
               return (
                 <Fragment key={index}>
                   <HotUnder data={data} />
                 </Fragment>
               );
-            else if (index === 4)
+            } else if (index === 4) {
               return (
                 <Fragment key={index}>
                   <NewBestsellers data={data} />
                 </Fragment>
               );
+            }
+            return null; // Add this default return statement
           })}
 
 

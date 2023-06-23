@@ -8,6 +8,7 @@ const initialState = {
 };
 
 export const getCart = createAsyncThunk('fetchCart', async (payload) => {
+  console.log('payload',payload)
   const { data } = await getCartItems(payload);
   return data.data;
 });
