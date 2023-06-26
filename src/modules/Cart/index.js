@@ -10,18 +10,25 @@ import services2 from '../../assets/images/services/services-2.svg';
 import close from '../../assets/images/icon/close.svg';
 import unlock from '../../assets/images/icon/unlock.svg';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItemFromCart } from '../../redux/reducers/cartReducer.slice';
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart);
   console.log('cartItems',cartItems)
-  const subTotal = cartItems.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
+  const subTotal = cartItems.items.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
   const extraPrices = 0;
   const total = subTotal + extraPrices;
 
-  const removeCartItem = (id) =>{
-    console.log('id',id)
-  } 
+  const removeCartItem = (key) =>{
+    const payload = {
+      key: key,
+      cart_key: cartItems?.sessionKey
+    };
+    dispatch(removeItemFromCart(payload))
+  }  
 
 
   return (
@@ -43,9 +50,9 @@ const Cart = () => {
                 </div>
                 <div className="inner_block">
                   <div className="card_block">
-                    {cartItems.length ? (
+                    {cartItems?.items.length ? (
                       <>
-                        {cartItems.map((item, index) => (
+                        {cartItems?.items.map((item, index) => (
                           <div className="single_card" key={index}>
                             <div className="card_view">
                               <div className="left_block">
@@ -65,7 +72,7 @@ const Cart = () => {
                                 </div>
                               </div>
                               <div className="right_block">
-                                <button className="closeIcon" type='button' onClick={()=>removeCartItem(item?.theme_id)}>
+                                <button className="closeIcon" type='button' onClick={()=>removeCartItem(item?.key)}>
                                   <img src={close} alt="Close icon" />
                                 </button>
                                 <div className="price">

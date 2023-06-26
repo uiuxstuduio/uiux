@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../redux/reducers/authReducer.slice';
 import './header.scss';
-import logo from '../../../assets/images/logo.svg';
+import logo from '../../../assets/images/logo.svg'
 import cartIcon from '../../../assets/images/icon/cart.svg';
 import profileIcon from '../../../assets/images/icon/profile-icon.png';
 import tech1 from '../../../assets/images/technology/html.png';

@@ -8,6 +8,17 @@ export const getCartItems = async (payload) => {
   }
 };
 
+export const removeCartItem = async (payload) => {
+  const endpoint = 'cart_item_remove';
+  try {
+    return await postRequest(endpoint, payload);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
 export const addToCart = async (payload) => {
   const endpoint = 'add_to_cart_item';
   try {
