@@ -1,5 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+  persistStore,
+  persistReducer,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 import thunk from 'redux-thunk';
 import authReducerSlice from './reducers/authReducer.slice';

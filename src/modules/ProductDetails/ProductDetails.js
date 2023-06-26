@@ -80,7 +80,7 @@ const ProductDetails = () => {
     setThemeData(data.data);
     setOpen(false);
   };
-  console.log('themeData',themeData);
+  // console.log('themeData',themeData);
 
   const addToCartHandler = async () => {
     setCartLoading(true);
@@ -99,6 +99,7 @@ const ProductDetails = () => {
       session_key: sessionKey
     };
     const addToCartRes = await addToCart(payload);
+    
     if (addToCartRes.status === 200) {
       dispatch(getCart({ cart_key: sessionKey }));
     }

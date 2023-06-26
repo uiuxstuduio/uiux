@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /* CSS */
 import './cart.scss';
@@ -11,24 +11,39 @@ import close from '../../assets/images/icon/close.svg';
 import unlock from '../../assets/images/icon/unlock.svg';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItemFromCart } from '../../redux/reducers/cartReducer.slice';
+import { getCart, removeItemFromCart } from '../../redux/reducers/cartReducer.slice';
 
 const Cart = () => {
   const dispatch = useDispatch();
-
   const cartItems = useSelector((state) => state.cart);
-  console.log('cartItems',cartItems)
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const getlist = await dispatch(getCart({ cart_key: cartItems?.sessionKey }));
+        console.log('getlist', getlist);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+  
+
+
+
+
+  console.log('cartItems', cartItems)
   const subTotal = cartItems.items.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
   const extraPrices = 0;
   const total = subTotal + extraPrices;
 
-  const removeCartItem = (key) =>{
+  const removeCartItem = (key) => {
     const payload = {
       key: key,
       cart_key: cartItems?.sessionKey
     };
     dispatch(removeItemFromCart(payload))
-  }  
+  }
 
 
   return (
@@ -72,7 +87,7 @@ const Cart = () => {
                                 </div>
                               </div>
                               <div className="right_block">
-                                <button className="closeIcon" type='button' onClick={()=>removeCartItem(item?.key)}>
+                                <button className="closeIcon" type='button' onClick={() => removeCartItem(item?.key)}>
                                   <img src={close} alt="Close icon" />
                                 </button>
                                 <div className="price">
