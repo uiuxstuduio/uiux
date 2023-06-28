@@ -11,7 +11,7 @@ import './home.scss';
 /* IMAGES */
 import { Backdrop, CircularProgress } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import collection from '../../assets/images/icon/collection.svg';
 import scale from '../../assets/images/icon/scale.svg';
 import wallet from '../../assets/images/icon/wallet.svg';
@@ -21,24 +21,37 @@ import NewBestsellers from '../../components/sections/New-bestsellers/Newbestsel
 import HotUnder from '../../components/sections/hot-under/HotUnder';
 import { newHomePage } from '../../services/pages.service';
 import LoginBanner from './Banner/LoginBanner/LoginBanner';
+import { fetchMenuData } from '../../redux/reducers/commonReducer.slice';
 
 const Home = () => {
   const [open, setOpen] = useState(true);
   const [data, setData] = useState({});
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setOpen(true);
     getData();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const getmenulist = await dispatch(fetchMenuData());
+        // console.log('getmenulist', getmenulist.payload);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [dispatch]);
+
   const getData = async () => {
     // const { data } = await getHomePageContent();
     const { data } = await newHomePage();
-    // console.log('data',data)
     setData(data.data);
     setOpen(false);
   };
+
 
   return (
     <>

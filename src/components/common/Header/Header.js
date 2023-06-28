@@ -22,6 +22,8 @@ const Header = () => {
   };
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const menu = useSelector((state) => state.commonData.menuData);
+  console.log('menu', menu)
   return (
     <header>
       <nav className="navbar navbar-expand-xl aa">
@@ -97,9 +99,22 @@ const Header = () => {
                         <div className="category_modal">
                           <div className="top_modal">
                             <div className="row">
-                              <div className="col-xl-6 col-12">
+                              <div className="col-xl-12 col-12">
                                 <div className="col_megamenu">
                                   <ul className="tech_temp">
+                                    {menu?.map((menu, i) => (
+                                      <li key={i}>
+                                        <div className="tech_img ht">
+                                          <img src={menu?.category_image || 'https://dummyimage.com/48x48/f208f2/ffffff'} alt="HTML Logo" />
+                                        </div>
+                                        <div className="head_title">
+                                          <a href="/">{menu?.theme_categorie}</a>
+                                          <p>{menu?.category_description || 'It is a long established fact that a reader will be distracted by'}                                           
+                                          </p>
+                                        </div>
+                                      </li>
+                                    ))
+                                    }
                                     <li>
                                       <div className="tech_img ht">
                                         <img src={tech1} alt="HTML Logo" />
@@ -124,10 +139,34 @@ const Header = () => {
                                         </p>
                                       </div>
                                     </li>
+                                    <li>
+                                      <div className="tech_img wp">
+                                        <img src={tech3} alt="WordPress Theme" />
+                                      </div>
+                                      <div className="head_title">
+                                        <a href="/">Wordpress Theme</a>
+                                        <p>
+                                          It is a long established fact that a reader will be
+                                          distracted by{' '}
+                                        </p>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div className="tech_img sp">
+                                        <img src={tech4} alt="Shopify Theme" />
+                                      </div>
+                                      <div className="head_title">
+                                        <a href="/">Shopify theme</a>
+                                        <p>
+                                          It is a long established fact that a reader will be
+                                          distracted by{' '}
+                                        </p>
+                                      </div>
+                                    </li>
                                   </ul>
                                 </div>
                               </div>
-                              <div className="col-xl-6 col-12">
+                              <div className="col-xl-6 col-12 d-none">
                                 <div className="col_megamenu">
                                   <ul className="tech_temp">
                                     <li>
@@ -295,7 +334,7 @@ const Header = () => {
               <Link to="/cart">
                 <div className="cart_wrapper position-relative">
                   <img src={cartIcon} alt="Cart Icon" />
-                  {cart.items.length !== 0 && <div className="notification"></div>}
+                  {cart.items.length !== 0 && <div className="notification">{cart.items.length || 0}</div>}
                 </div>
               </Link>
             </div>

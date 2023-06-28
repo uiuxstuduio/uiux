@@ -57,10 +57,10 @@ const Trending = ({ data }) => {
                                 <div className='tray-cardHover'>
                                     <div className='tray-cardDescription'>
                                         <div className='d-flex'>
-                                            <Link to={`/product-details/${val.id}`} className='previewBtn'>
+                                            <a href={`${val?.liveurl}`} className='previewBtn'>
                                                 Live Preview
-                                            </Link>
-                                            <Link to={`/product-details/${val.id}`} className='cartBtn'>
+                                            </a>
+                                            <Link to={`#`} className='cartBtn'>
                                                 <img src={cartIcon} alt="Card Images" />
                                             </Link>
                                         </div>

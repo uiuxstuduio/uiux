@@ -24,9 +24,7 @@ export default function Products() {
   const [currentTab, setCurrentTab] = useState(allowedDataArray[0])
   const [cartLoading, setCartLoading] = useState(false);
 
-  console.log('currentTab',currentTab)
-  console.log('productTab',productTab)
-
+// console.log('apiData',apiData)
   useEffect(() => {
     if (productTab && allowedDataArray.includes(productTab)) {
       setCurrentTab(productTab);
@@ -48,6 +46,17 @@ export default function Products() {
     setApiData(data.data);
     setCartLoading(false);
   };
+
+  const keys = Object.keys(apiData);
+
+  const totalCount = keys.slice(1).reduce((acc, key) => {
+    const array = apiData[key];
+    if (Array.isArray(array) && array.length > 0) {
+      return acc + array.length;
+    }
+    return acc;
+  }, 0);
+
 
   return (
     <>
@@ -71,23 +80,23 @@ export default function Products() {
                     <ul>
                       <li className='main'>
                         <Link to="/">All categories</Link>
-                        <span>51</span>
+                        <span>{totalCount}</span>
                       </li>
                       <li>
                         <Link href="/products/best_selling_products">Weekly Bestsellers</Link>
-                        <span>8</span>
+                        <span>{apiData?.best_selling_products?.length}</span>
                       </li>
                       <li>
                         <Link href="/products/hot_under_category">Hot Under $15</Link>
-                        <span>7</span>
+                        <span>{apiData?.hot_under_category?.length}</span>
                       </li>
                       <li>
                         <Link href="/products/new_bestsellers">New Bestsellers</Link>
-                        <span>25</span>
+                        <span>{apiData?.new_bestsellers?.length}</span>
                       </li>
                       <li>
                         <Link href="/products/responsive_items">Responsive Items</Link>
-                        <span>11</span>
+                        <span>{apiData?.responsive_items?.length}</span>
                       </li>
                     </ul>
                   </div>
@@ -130,9 +139,9 @@ export default function Products() {
                               </div>
                               <div className='productSale'>{data.sale} Sales</div>
                               <div className='productSale'>Last updated: 04 Mar 23</div>
-                              <Link href={`/product-details/${data.id}`} className='btn_wrapper'>
+                              <a href={data.liveurl} className='btn_wrapper'>
                                 Live Preview
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>

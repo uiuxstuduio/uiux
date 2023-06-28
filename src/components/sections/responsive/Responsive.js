@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { slider_data } from './Data';
 import cartIcon from '../../../assets/images/icon/cart.svg';
 import './responsive.scss';
 
@@ -18,63 +17,67 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper';
 
 const Responsive = ({ data }) => {
-//   console.log(data)
-  return (
-    <section className='slider_wrapper ResponsiveWrapper'>
-        <div className='container'>
-            <div className='title'>
-                <Link to='/products/responsive_items' className='header'>
-                    <h2>Top responsive items</h2>
-                </Link>
-                <Link to='/products/responsive_items' className='viewBtn'>
-                    View all
-                </Link>
-            </div>
-            <Swiper
-                // loop={true}
-                grabCursor={true}
-                slidesPerView={1}
-                spaceBetween={0}
-                navigation={true}
-                breakpoints={{
-                    1400: {
-                      slidesPerView: 5,
-                    },
-                    1199: {
-                      slidesPerView: 4,
-                    },
-                    991: {
-                      slidesPerView: 3,
-                    },
-                    767: {
-                      slidesPerView: 2,
-                    },
-                    576: {
-                      slidesPerView: 1,
-                    },
-                }}
-                modules={[ Navigation]}
-                className="mySwiper cardSlider"
+    //   console.log(data['responsive_items'])
+    const responsive_items = data['responsive_items'];
+
+    return (
+        <section className='slider_wrapper ResponsiveWrapper'>
+            <div className='container'>
+                <div className='title'>
+                    <Link to='/products/responsive_items' className='header'>
+                        <h2>Top responsive items</h2>
+                    </Link>
+                    <Link to='/products/responsive_items' className='viewBtn'>
+                        View all
+                    </Link>
+                </div>
+                <Swiper
+                    // loop={true}
+                    grabCursor={true}
+                    slidesPerView={1}
+                    spaceBetween={0}
+                    navigation={true}
+                    breakpoints={{
+                        1400: {
+                            slidesPerView: 5,
+                        },
+                        1199: {
+                            slidesPerView: 4,
+                        },
+                        991: {
+                            slidesPerView: 3,
+                        },
+                        767: {
+                            slidesPerView: 2,
+                        },
+                        576: {
+                            slidesPerView: 1,
+                        },
+                    }}
+                    modules={[Navigation]}
+                    className="mySwiper cardSlider"
                 >
-                    {slider_data.map((val, i) => (
+                    {responsive_items?.map((val, i) => (
                         <SwiperSlide key={i}>
                             <div className='cardBlock'>
-                                <Link href='/' className='cardImg'>
-                                    <img src={val.image} alt="Card Images" />
+                                <Link to={`/product-details/${val.id}`} className='cardImg'>
+                                    <img src={val.featured_image} alt="Card Images" />
                                 </Link>
                                 <div className='tray-cardHover'>
                                     <div className='tray-cardDescription'>
                                         <div className='d-flex'>
-                                            <Link href='/' className='previewBtn'>
+                                            <a href={`${val?.liveurl}`} className='previewBtn'>
                                                 Live Preview
-                                            </Link>                            
-                                            <Link href='/' className='cartBtn'>
+                                            </a>
+                                            <Link to={`#`} className='cartBtn'>
                                                 <img src={cartIcon} alt="Card Images" />
                                             </Link>
+
+
                                         </div>
                                         <div className='Title'>
                                             <h2>{val.name}</h2>
-                                            <span>{val.new_price}</span>
+                                            <span>{val.sale_price}</span>
                                         </div>
                                         <div className='discripion'>
                                             <ul>
@@ -83,16 +86,16 @@ const Responsive = ({ data }) => {
                                                 <li>JS</li>
                                                 <li>BOOTSTRAP</li>
                                             </ul>
-                                            <p>{val.content}</p>
+                                            <p>{val.short_description}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     ))}
-            </Swiper>
-        </div>
-    </section>
-  );
+                </Swiper>
+            </div>
+        </section>
+    );
 };
 export default Responsive;

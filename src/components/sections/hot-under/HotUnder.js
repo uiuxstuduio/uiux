@@ -18,45 +18,45 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper';
 
 const HotUnder = ({ data }) => {
-// console.log(data)
-const HotUnderData = data['hot_under_category'];
-  return (
-    <section className='slider_wrapper'>
-        <div className='container'>
-            <div className='title'>
-                <Link to='/products/hot_under_category' className='header'>
-                    <h2>Hot under $15</h2>
-                </Link>
-                <Link to='/products/hot_under_category' className='viewBtn'>
-                    View all
-                </Link>
-            </div>
-            <Swiper
-                // loop={true}
-                grabCursor={true}
-                slidesPerView={1}
-                spaceBetween={0}
-                navigation={true}
-                breakpoints={{
-                    1400: {
-                      slidesPerView: 7,
-                    },
-                    1199: {
-                      slidesPerView: 5,
-                    },
-                    991: {
-                      slidesPerView: 4,
-                    },
-                    767: {
-                      slidesPerView: 3,
-                    },
-                    576: {
-                      slidesPerView: 2,
-                    },
-                }}
-                modules={[ Navigation]}
-                className="mySwiper cardSlider"
-                >                    
+    // console.log(data)
+    const HotUnderData = data['hot_under_category'];
+    return (
+        <section className='slider_wrapper'>
+            <div className='container'>
+                <div className='title'>
+                    <Link to='/products/hot_under_category' className='header'>
+                        <h2>Hot under $15</h2>
+                    </Link>
+                    <Link to='/products/hot_under_category' className='viewBtn'>
+                        View all
+                    </Link>
+                </div>
+                <Swiper
+                    // loop={true}
+                    grabCursor={true}
+                    slidesPerView={1}
+                    spaceBetween={0}
+                    navigation={true}
+                    breakpoints={{
+                        1400: {
+                            slidesPerView: 7,
+                        },
+                        1199: {
+                            slidesPerView: 5,
+                        },
+                        991: {
+                            slidesPerView: 4,
+                        },
+                        767: {
+                            slidesPerView: 3,
+                        },
+                        576: {
+                            slidesPerView: 2,
+                        },
+                    }}
+                    modules={[Navigation]}
+                    className="mySwiper cardSlider"
+                >
                     {HotUnderData.map((val, i) => (
                         <SwiperSlide key={i}>
                             <div className='cardBlock'>
@@ -66,9 +66,9 @@ const HotUnderData = data['hot_under_category'];
                                 <div className='tray-cardHover'>
                                     <div className='tray-cardDescription'>
                                         <div className='d-flex'>
-                                            <Link to={`/product-details/${val.id}`} className='previewBtn'>
+                                            <a href={`${val?.liveurl}`} className='previewBtn'>
                                                 Live Preview
-                                            </Link>
+                                            </a>
                                             <Link to={`/product-details/${val.id}`} className='cartBtn'>
                                                 <img src={cartIcon} alt="Card Images" />
                                             </Link>
@@ -91,10 +91,10 @@ const HotUnderData = data['hot_under_category'];
                             </div>
                         </SwiperSlide>
                     ))}
-            </Swiper>
-        </div>
-    </section>
-  );
+                </Swiper>
+            </div>
+        </section>
+    );
 };
 
 export default HotUnder;

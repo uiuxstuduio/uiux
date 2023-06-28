@@ -28,3 +28,11 @@ export const newHomePage = async () => {
     console.log(error);
   }
 };
+export const getMenudata = async () => {
+  const endpoint = 'categories';
+  try {
+    return await postRequest(endpoint);
+  } catch (error) {
+    console.log(error);
+  }
+};
