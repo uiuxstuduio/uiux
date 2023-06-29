@@ -18,6 +18,7 @@ import Checkout from '../modules/Checkout';
 import DefaultLayout from '../layouts';
 import ProjectSteps from '../modules/ProjectSteps/Index';
 import ThankYou from '../modules/ThankYou/Index';
+import CategoryPage from '../modules/CategoryPage/CategoryPage';
 
 const AnimatedRoute = () => {
   const location = useLocation();
@@ -40,6 +41,7 @@ const AnimatedRoute = () => {
         <Route element={<DefaultLayout component={<Products />} />} path="/products/:productTab" />
         <Route element={<ProjectSteps />} path="/steps" />
         <Route element={<DefaultLayout component={<ProductDetails />} />} path="/product-details/:id" />
+        <Route element={<DefaultLayout component={<CategoryPage />} />} path="/category/:id" />
         <Route element={<Login />} path="/login" />
         <Route element={<Signup />} path="/signup" />
         <Route element={<DefaultLayout component={<Cart />} />} path="/cart" />

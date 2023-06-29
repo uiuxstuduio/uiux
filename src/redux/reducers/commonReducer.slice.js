@@ -1,12 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getMenudata } from '../../services/pages.service';
+import { getMenuCategories, getMenudata } from '../../services/pages.service';
 
 const initialState = {
-  menuData:[]
+  menuData:[],
+  categories:[]
 };
 
 export const fetchMenuData = createAsyncThunk('fetchMenuData', async () => {
   const { data } = await getMenudata();
+  return data.data;
+});
+
+export const getCategories = createAsyncThunk('getCategories', async (payload) => {
+  const { data } = await getMenuCategories(payload);
   return data.data;
 });
 
@@ -16,6 +22,8 @@ const Common = createSlice({
   reducers: {
     setCommonData: (state, { payload }) => {
       state.menuData = payload;
+      state.categories = payload;
+
     }
   },
   extraReducers: (builder) => {
@@ -29,6 +37,19 @@ const Common = createSlice({
         state.isSuccess = true;
       })
       .addCase(fetchMenuData.rejected, (state) => {
+        state.loading = false;
+        state.isSuccess = false;
+        state.message = 'failed';
+      })
+      .addCase(getCategories.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.categories = payload;
+        state.isSuccess = true;
+      })
+      .addCase(getCategories.rejected, (state) => {
         state.loading = false;
         state.isSuccess = false;
         state.message = 'failed';

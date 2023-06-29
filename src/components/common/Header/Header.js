@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../redux/reducers/authReducer.slice';
 import './header.scss';
@@ -24,6 +24,8 @@ const Header = () => {
   const cart = useSelector((state) => state.cart);
   const menu = useSelector((state) => state.commonData.menuData);
   console.log('menu', menu)
+
+
   return (
     <header>
       <nav className="navbar navbar-expand-xl aa">
@@ -108,14 +110,16 @@ const Header = () => {
                                           <img src={menu?.category_image || 'https://dummyimage.com/48x48/f208f2/ffffff'} alt="HTML Logo" />
                                         </div>
                                         <div className="head_title">
-                                          <a href="/">{menu?.theme_categorie}</a>
+                                        <Link to={{pathname: `/category/${menu.cate_id}`}}  state={{ name: menu?.theme_categorie }}>{menu?.theme_categorie}</Link>
+                                          {/* <Link to={`/category/${menu.cate_id}`}>{menu?.theme_categorie}</Link> */}
+                                          {/* <Link onClick={()=>sendParams(menu?.cate_id,menu?.theme_categorie)}>{menu?.theme_categorie}</Link> */}
                                           <p>{menu?.category_description || 'It is a long established fact that a reader will be distracted by'}                                           
                                           </p>
                                         </div>
                                       </li>
                                     ))
                                     }
-                                    <li>
+                                    {/* <li>
                                       <div className="tech_img ht">
                                         <img src={tech1} alt="HTML Logo" />
                                       </div>
@@ -162,7 +166,7 @@ const Header = () => {
                                           distracted by{' '}
                                         </p>
                                       </div>
-                                    </li>
+                                    </li> */}
                                   </ul>
                                 </div>
                               </div>
@@ -198,7 +202,7 @@ const Header = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="bottom_modal">
+                          <div className="bottom_modal d-none">
                             <div className="row">
                               <div className="col-xl-6 col-12">
                                 <div className="col_megamenu">

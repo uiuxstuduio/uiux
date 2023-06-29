@@ -36,3 +36,15 @@ export const getMenudata = async () => {
     console.log(error);
   }
 };
+
+export const getMenuCategories = async (payload) => {
+  const endpoint = 'cate_wise_products';
+  const payloads = {
+    cate_id: payload
+  };
+  try {
+    return await postRequest(endpoint,payloads);
+  } catch (error) {
+    console.log(error);
+  }
+};
