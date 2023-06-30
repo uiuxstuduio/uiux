@@ -125,10 +125,10 @@
 
   .blog-content {
     background: #000000ba;
+    backdrop-filter: blur(3px);
     border-radius: 10px;
     padding: 10px;
     margin-top: auto;
-    backdrop-filter: blur(3px);
     transition: all 0.2s ease;
    
     .top {
@@ -176,5 +176,72 @@
         font-size: 14px;
       }
     }
+  }
+}
+
+
+
+.category-bottom{
+  width: 100%;
+  border-radius: 10px;
+  // background: linear-gradient(180deg, rgb(22 24 31 / 2%), rgb(22 24 31) 24.61%, rgb(22 24 31) 38.57%, rgb(22, 24, 31) 64.27%, rgb(22, 24, 31) 82.94%, #16181f);
+  background: #000000ba;
+  backdrop-filter: blur(3px);
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s ease;
+  z-index: 5;
+  .tray-cardDescription{
+      padding: 20px 12px 12px;
+      .previewBtn {
+          background: #e1e6f0;
+          width: 100%;
+      }
+      .cartBtn {
+          background: #ffffff26;
+          margin-left: 8px;
+      }
+      .cartBtn,.previewBtn{
+          padding: 9px;
+          border-radius: 8px;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          transition: all 0.5s ease;
+          text-transform: capitalize;
+          color: #0f1014;
+          font-size: 13px;
+          font-weight: 600;
+          line-height: 20px;
+          overflow: hidden;
+          position: relative;
+          &:hover{
+              transform: scale(1.01);
+          }
+      }
+  }
+  .Title {
+      margin: 0 0 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h2 {
+          font-size: 15px;
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+         a{
+          color: #fff;
+         }
+      }
+      span{
+          font-size: 15px;
+          color: $primary-color;
+          font-weight: 600;
+          letter-spacing: 1px;
+          margin-left: 5px;
+          line-height: 1.2;
+      }
   }
 }

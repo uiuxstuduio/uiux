@@ -23,7 +23,6 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const menu = useSelector((state) => state.commonData.menuData);
-  console.log('menu', menu)
 
 
   return (
@@ -164,7 +163,7 @@ const Header = () => {
                                           distracted by{' '}
                                         </p>
                                       </div>
-                                    </li> */}
+                                    </li>  */}
                                   </ul>
                                 </div>
                               </div>

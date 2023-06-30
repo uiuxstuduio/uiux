@@ -4,7 +4,6 @@ import { Link, useLocation, useParams } from 'react-router-dom'
 import cartIcon from '../../assets/images/icon/cart.svg';
 import { useDispatch } from 'react-redux';
 import { getCategories } from '../../redux/reducers/commonReducer.slice';
-import LoaderAnimation from '../../components/common/LoaderAnimation/LoaderAnimation';
 
 const CategoryPage = () => {
 
@@ -28,7 +27,7 @@ const CategoryPage = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, dispatch]);
 
   console.log('data', data)
   console.log('loading', loading)
@@ -57,26 +56,32 @@ const CategoryPage = () => {
                         <Link to={`/product-details/${category?.id}`} className='link'>
                           <img src={category?.featured_image} alt="img" className="bgImg" />
                         </Link>
-                     
 
-                        <Link className='live' target='_blank'
+
+                        {/* <Link className='live' target='_blank'
                           to={{ pathname: `/preview/${category?.id}` }}
-                        ></Link>
+                        ></Link> */}
 
+                        <div className='category-bottom'>
+                          <div className='tray-cardDescription'>
 
-                        <div className="blog-content">
-                          <div className="top">
-                            <Link to={`/cart/`} className="cartBtn">
-                              <img src={cartIcon} alt="Card Images" width={'20px'} />
-                              <label>Add to cart</label>
-                            </Link>
-                            <span>${category?.theme_price}</span>
+                            <div className='Title'>
+                              <h2><Link to={`/product-details/${category?.id}`}>
+                                {category?.theme_name}
+                              </Link></h2>
+
+                              <span>${category?.theme_price}</span>
+                            </div>
+                            <div className='d-flex'>
+                              <Link className='previewBtn' target='_blank'
+                                to={{ pathname: `/preview/${category?.id}` }}
+                              >Live Preview</Link>
+
+                              <Link to={`#`} className='cartBtn'>
+                                <img src={cartIcon} alt="Card Images" />
+                              </Link>
+                            </div>
                           </div>
-                          <h5 className="blog-title">
-                            <Link to={`/product-details/${category?.id}`}>
-                              {category?.theme_name}
-                            </Link>
-                          </h5>
                         </div>
                       </div>
                     </div>

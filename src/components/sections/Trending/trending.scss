@@ -175,6 +175,10 @@
         .cartBtn {
             background: #ffffff26;
             margin-left: 8px;
+
+            &.incart{
+                background: #ffb43a;
+            }
         }
         .cartBtn,.previewBtn{
             padding: 9px;
@@ -193,6 +197,9 @@
             &:hover{
                 transform: scale(1.01);
             }
+        }
+        .btn_wrapper{
+            display: none;
         }
         .discripion{
             margin-top: 5px;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './trending.scss';
-import cartIcon from '../../../assets/images/icon/cart.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import "swiper/css/navigation";
 
 import { Navigation } from 'swiper';
+import AddToCartButton from '../../AddToCartButton/AddToCartButton';
 
 const Trending = ({ data }) => {
     const trendingData = data['best_selling_products'];
@@ -63,9 +63,7 @@ const Trending = ({ data }) => {
                                             >
                                                 Live Preview
                                             </Link>
-                                            <Link to={`#`} className='cartBtn'>
-                                                <img src={cartIcon} alt="Card Images" />
-                                            </Link>
+                                            <AddToCartButton productid={val.id} />                                           
                                         </div>
                                         <div className='Title'>
                                             <h2>{val.name}</h2>

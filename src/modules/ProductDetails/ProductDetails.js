@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
@@ -27,30 +27,25 @@ import 'swiper/css';
 import './productDetails.scss';
 import { themeDetails } from '../../services/pages.service';
 import { timeSince } from '../../utils/daysAgo/daysAgo';
-import { addToCart } from '../../services/cart.service';
-import { useDispatch, useSelector } from 'react-redux';
-import { hash } from '../../utils/hash';
-import { getCart, setCartSession } from '../../redux/reducers/cartReducer.slice';
+import {  useSelector } from 'react-redux';
+
 import { useStep, values as stepValues } from './useStepHook';
 import AddCollectionContent from './AddCollectionContent';
 import CreateCollectionContent from './CreateCollectionContent';
+import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 const ProductDetails = () => {
-  const dispatch = useDispatch();
   const { id } = useParams();
   // console.log('Current theme_id',id);
   const userLogin = useSelector((state) => state.user.user_login);
 
-  const cartData = useSelector((state) => state.cart);
-  const items = cartData.items.map((item) => item.theme_id);
-  // console.log('items',items);
-  console.log('cartData', cartData);
+  // const cartData = useSelector((state) => state.cart);
+  // const items = cartData.items.map((item) => item.theme_id);
+  // const [cartLoading, setCartLoading] = useState(false);
+  // const inCart = items.includes(id);
 
-  const [cartLoading, setCartLoading] = useState(false);
-  const inCart = items.includes(id);
   // console.log('inCart', inCart);
   const collections = useSelector((state) => state.collections.collection);
   const [selectedCollection, setSelectedCollection] = useState(null);
-  const navigate = useNavigate();
   //loader overlay
   const [open, setOpen] = useState(true);
   const [themeData, setThemeData] = useState(null);
@@ -59,7 +54,7 @@ const ProductDetails = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  console.log('themeData', themeData)
+  // console.log('themeData', themeData)
   //Modal show close
   const [show, setShow] = useState(false);
 
@@ -71,40 +66,14 @@ const ProductDetails = () => {
   useEffect(() => {
     setOpen(true);
     fetchDetails(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   const fetchDetails = async (id) => {
     const { data } = await themeDetails(id);
-    // console.log('data',data);
     setThemeData(data.data);
     setOpen(false);
   };
   // console.log('themeData',themeData);
-
-  const addToCartHandler = async () => {
-    setCartLoading(true);
-    const needGenerate = !cartData.expiry || cartData.expiry < Date.now();
-    let sessionKey, expiry;
-    if (!needGenerate) {
-      expiry = cartData.expiry;
-      sessionKey = cartData.sessionKey;
-    } else {
-      expiry = Date.now() + 60 * 60 * 24 * 1000;
-      sessionKey = hash();
-      dispatch(setCartSession({ sessionKey, expiry }));
-    }
-    const payload = {
-      product_id: id,
-      session_key: sessionKey
-    };
-    const addToCartRes = await addToCart(payload);
-
-    if (addToCartRes.status === 200) {
-      dispatch(getCart({ cart_key: sessionKey }));
-    }
-    setCartLoading(false);
-  };
 
   return (
     <>
@@ -164,8 +133,8 @@ const ProductDetails = () => {
                           >
                             Live Preview
                           </Link>
-
-                          {inCart ? (
+                          <AddToCartButton productid={id} />
+                          {/* {inCart ? (
                             <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
                               View In Cart
                             </button>
@@ -184,11 +153,12 @@ const ProductDetails = () => {
                                 </button>
                               ) : (
                                 <button className="btn_wrapper light" onClick={addToCartHandler}>
-                                  Add to cart
-                                </button>
+                                    Add to cart
+                                  </button>
+                                // 
                               )}
                             </>
-                          )}
+                          )} */}
                         </div>
                         <div className="share_group">
                           <Link to="/" className="img">
