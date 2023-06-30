@@ -66,9 +66,12 @@ const Responsive = ({ data }) => {
                                 <div className='tray-cardHover'>
                                     <div className='tray-cardDescription'>
                                         <div className='d-flex'>
-                                            <a href={`${val?.liveurl}`} className='previewBtn'>
+                                            <Link className='previewBtn' target='_blank'
+                                                to={{ pathname: `/preview/${val.id}` }}
+                                                state={{ url: val?.liveurl, id: val.id }}
+                                            >
                                                 Live Preview
-                                            </a>
+                                            </Link>
                                             <Link to={`#`} className='cartBtn'>
                                                 <img src={cartIcon} alt="Card Images" />
                                             </Link>

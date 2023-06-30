@@ -110,10 +110,8 @@ const Header = () => {
                                           <img src={menu?.category_image || 'https://dummyimage.com/48x48/f208f2/ffffff'} alt="HTML Logo" />
                                         </div>
                                         <div className="head_title">
-                                        <Link to={{pathname: `/category/${menu.cate_id}`}}  state={{ name: menu?.theme_categorie }}>{menu?.theme_categorie}</Link>
-                                          {/* <Link to={`/category/${menu.cate_id}`}>{menu?.theme_categorie}</Link> */}
-                                          {/* <Link onClick={()=>sendParams(menu?.cate_id,menu?.theme_categorie)}>{menu?.theme_categorie}</Link> */}
-                                          <p>{menu?.category_description || 'It is a long established fact that a reader will be distracted by'}                                           
+                                          <Link to={{ pathname: `/category/${menu.cate_id}` }} state={{ name: menu?.theme_categorie }}>{menu?.theme_categorie}</Link>
+                                          <p>{menu?.category_description || 'It is a long established fact that a reader will be distracted by'}
                                           </p>
                                         </div>
                                       </li>

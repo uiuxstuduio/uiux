@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 
 import { useParams } from 'react-router-dom';
 import { newHomePage } from '../../services/pages.service';
-import { Link } from '@mui/material';
+// import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import cart from "../../assets/images/icon/cart.svg"
 
@@ -17,14 +18,13 @@ export default function Products() {
     "hot_under_category",
     "new_bestsellers",
     "responsive_items",
-  ],[]);
+  ], []);
   const [apiData, setApiData] = useState({});
   const { productTab } = useParams()
   const [currentTabData, setCurrentTabData] = useState([])
   const [currentTab, setCurrentTab] = useState(allowedDataArray[0])
   const [cartLoading, setCartLoading] = useState(false);
 
-// console.log('apiData',apiData)
   useEffect(() => {
     if (productTab && allowedDataArray.includes(productTab)) {
       setCurrentTab(productTab);
@@ -34,7 +34,7 @@ export default function Products() {
 
   useEffect(() => {
     if (apiData && apiData[currentTab]) {
-      setCurrentTabData(apiData[currentTab] || []);     
+      setCurrentTabData(apiData[currentTab] || []);
     }
     console.log("currentTabData", currentTabData);
     // console.log('apiData',apiData);
@@ -83,19 +83,19 @@ export default function Products() {
                         <span>{totalCount}</span>
                       </li>
                       <li>
-                        <Link href="/products/best_selling_products">Weekly Bestsellers</Link>
+                        <Link to={'/products/best_selling_products'}>Weekly Bestsellers</Link>
                         <span>{apiData?.best_selling_products?.length}</span>
                       </li>
                       <li>
-                        <Link href="/products/hot_under_category">Hot Under $15</Link>
+                        <Link to={"/products/hot_under_category"}>Hot Under $15</Link>
                         <span>{apiData?.hot_under_category?.length}</span>
                       </li>
                       <li>
-                        <Link href="/products/new_bestsellers">New Bestsellers</Link>
+                        <Link to={"/products/new_bestsellers"}>New Bestsellers</Link>
                         <span>{apiData?.new_bestsellers?.length}</span>
                       </li>
                       <li>
-                        <Link href="/products/responsive_items">Responsive Items</Link>
+                        <Link to={"/products/responsive_items"}>Responsive Items</Link>
                         <span>{apiData?.responsive_items?.length}</span>
                       </li>
                     </ul>
@@ -113,13 +113,13 @@ export default function Products() {
                         <div className='productBlocks' key={data.id}>
                           <div className='product'>
                             <div className='productImg'>
-                              <Link href={`/product-details/${data.id}`}>
+                              <Link to={`/product-details/${data.id}`}>
                                 <img src={data.featured_image} alt='' />
                               </Link>
                             </div>
                             <div className='productText'>
                               <h2>
-                                <Link href={`/product-details/${data.id}`}>{data.name}</Link>
+                                <Link to={`/product-details/${data.id}`}>{data.name}</Link>
                               </h2>
                               <ul>
                                 <li>Joomla 4 Ready</li>
@@ -139,9 +139,10 @@ export default function Products() {
                               </div>
                               <div className='productSale'>{data.sale} Sales</div>
                               <div className='productSale'>Last updated: 04 Mar 23</div>
-                              <a href={data.liveurl} className='btn_wrapper'>
-                                Live Preview
-                              </a>
+
+                              <Link className='btn_wrapper'
+                                to={{ pathname: `/preview/${data?.id}` }}
+                              > Live Preview</Link>
                             </div>
                           </div>
                         </div>

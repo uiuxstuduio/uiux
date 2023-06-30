@@ -39,7 +39,7 @@ const CategoryPage = () => {
         <div className="container">
           <div className="heading">
             <h1>Category</h1>
-            <p className='h5'>{state.name}</p>
+            <p className='h5'>{state?.name}</p>
           </div>
         </div>
       </div>
@@ -54,10 +54,16 @@ const CategoryPage = () => {
                   data.payload.map((category, i) => (
                     <div className="col-lg-3 col-md-4 col-12" key={i}>
                       <div className="single-blog blog-style-one">
-                        <img src={category?.featured_image} alt="img" className="bgImg" />
-                        <div className="blog-image">
-                          <a href={category?.liveurl || '#'} className="category"></a>
-                        </div>
+                        <Link to={`/product-details/${category?.id}`} className='link'>
+                          <img src={category?.featured_image} alt="img" className="bgImg" />
+                        </Link>
+                     
+
+                        <Link className='live' target='_blank'
+                          to={{ pathname: `/preview/${category?.id}` }}
+                        ></Link>
+
+
                         <div className="blog-content">
                           <div className="top">
                             <Link to={`/cart/`} className="cartBtn">
@@ -77,7 +83,7 @@ const CategoryPage = () => {
                   ))
                 ) : (
                   !data?.payload ? (
-                  <div className='text-center'>No Data Found</div>
+                    <div className='text-center'>No Data Found</div>
                   ) : null
                 )
               )

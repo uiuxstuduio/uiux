@@ -43,7 +43,7 @@ const ProductDetails = () => {
   const cartData = useSelector((state) => state.cart);
   const items = cartData.items.map((item) => item.theme_id);
   // console.log('items',items);
-  console.log('cartData',cartData);
+  console.log('cartData', cartData);
 
   const [cartLoading, setCartLoading] = useState(false);
   const inCart = items.includes(id);
@@ -59,7 +59,7 @@ const ProductDetails = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  console.log('themeData', themeData)
   //Modal show close
   const [show, setShow] = useState(false);
 
@@ -99,7 +99,7 @@ const ProductDetails = () => {
       session_key: sessionKey
     };
     const addToCartRes = await addToCart(payload);
-    
+
     if (addToCartRes.status === 200) {
       dispatch(getCart({ cart_key: sessionKey }));
     }
@@ -142,7 +142,7 @@ const ProductDetails = () => {
                         </div>
                         <div className="d-flex align-items-center">
                           <img src={star} alt="Doc Icon" />
-                          <span>{themeData?.review/5 || '0/5'}</span>
+                          <span>{themeData?.review / 5 || '0/5'}</span>
                         </div>
                       </div>
                       <h2 className="text-capitalize">
@@ -159,9 +159,12 @@ const ProductDetails = () => {
                       </h2>
                       <div className="btnBlock">
                         <div className="btn_group">
-                          <a className="btn_wrapper" href={themeData.theme_data.demo_url}>
+                          <Link className='btn_wrapper' target='_blank'
+                            to={{ pathname: `/preview/${themeData?.theme_data?.theme_id}` }}
+                          >
                             Live Preview
-                          </a>
+                          </Link>
+
                           {inCart ? (
                             <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
                               View In Cart

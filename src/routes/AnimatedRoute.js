@@ -19,6 +19,7 @@ import DefaultLayout from '../layouts';
 import ProjectSteps from '../modules/ProjectSteps/Index';
 import ThankYou from '../modules/ThankYou/Index';
 import CategoryPage from '../modules/CategoryPage/CategoryPage';
+import LivePreview from '../modules/LivePreview';
 
 const AnimatedRoute = () => {
   const location = useLocation();
@@ -46,6 +47,7 @@ const AnimatedRoute = () => {
         <Route element={<Signup />} path="/signup" />
         <Route element={<DefaultLayout component={<Cart />} />} path="/cart" />
         <Route element={<ThankYou />} path="/thankyou" />
+        <Route element={<LivePreview />} path="/preview/:id" />
         <Route element={<PageNotFound />} path="*" />
       </Routes>
     </AnimatePresence>
