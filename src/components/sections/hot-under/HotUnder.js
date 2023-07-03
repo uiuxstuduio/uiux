@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 // import { slider_data } from './Data';
-import cartIcon from '../../../assets/images/icon/cart.svg';
 
 
 // Import Swiper React components
@@ -16,6 +15,7 @@ import "swiper/css/navigation";
 // import required modules
 // import { FreeMode, Pagination } from 'swiper';
 import { Navigation } from 'swiper';
+import AddToCartButton from '../../AddToCartButton/AddToCartButton';
 
 const HotUnder = ({ data }) => {
     // console.log(data)
@@ -72,9 +72,7 @@ const HotUnder = ({ data }) => {
                                             >
                                                 Live Preview
                                             </Link>
-                                            <Link to={`/product-details/${val.id}`} className='cartBtn'>
-                                                <img src={cartIcon} alt="Card Images" />
-                                            </Link>
+                                            <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>   
                                         </div>
                                         <div className='Title'>
                                             <h2>{val.name}</h2>

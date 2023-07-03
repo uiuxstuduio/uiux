@@ -9,7 +9,7 @@ import { newHomePage } from '../../services/pages.service';
 // import { Link } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import cart from "../../assets/images/icon/cart.svg"
+import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 
 export default function Products() {
   const allowedDataArray = useMemo(() => [
@@ -31,7 +31,6 @@ export default function Products() {
     }
     getData();
   }, [productTab, allowedDataArray]);
-
   useEffect(() => {
     if (apiData && apiData[currentTab]) {
       setCurrentTabData(apiData[currentTab] || []);
@@ -57,6 +56,8 @@ export default function Products() {
     return acc;
   }, 0);
 
+  console.log('currentTab',currentTab)
+  console.log('productTab',productTab)
 
   return (
     <>
@@ -73,28 +74,28 @@ export default function Products() {
         <div className='productWrapper'>
           <div className='container'>
             <div className='row'>
-              <div className='col-md-4'>
+              <div className='col-12 col-lg-4 mb-4 mb-lg-0'>
                 <div className='stickyBlock'>
                   <div className='Category'>
                     <h2>Category</h2>
                     <ul>
-                      <li className='main'>
+                      <li className='main d-none d-lg-block'>
                         <Link to="/">All categories</Link>
                         <span>{totalCount}</span>
                       </li>
-                      <li>
-                        <Link to={'/products/best_selling_products'}>Weekly Bestsellers</Link>
+                      <li className={currentTab === 'best_selling_products' ? 'active' :''}>
+                        <Link to={'/products/best_selling_products'} >Weekly Bestsellers</Link>
                         <span>{apiData?.best_selling_products?.length}</span>
                       </li>
-                      <li>
+                      <li className={currentTab === 'hot_under_category' ? 'active' :''}>
                         <Link to={"/products/hot_under_category"}>Hot Under $15</Link>
                         <span>{apiData?.hot_under_category?.length}</span>
                       </li>
-                      <li>
+                      <li className={currentTab === 'new_bestsellers' ? 'active' :''}>
                         <Link to={"/products/new_bestsellers"}>New Bestsellers</Link>
                         <span>{apiData?.new_bestsellers?.length}</span>
                       </li>
-                      <li>
+                      <li className={currentTab === 'responsive_items' ? 'active' :''}>
                         <Link to={"/products/responsive_items"}>Responsive Items</Link>
                         <span>{apiData?.responsive_items?.length}</span>
                       </li>
@@ -102,7 +103,7 @@ export default function Products() {
                   </div>
                 </div>
               </div>
-              <div className='col-md-8'>
+              <div className='col-12 col-lg-8'>
                 {
                   cartLoading ? (
                     <div className="custom-loader mx-auto"></div>
@@ -129,9 +130,10 @@ export default function Products() {
                             </div>
                             <div className='productPrice'>
                               <div className='addToCart'>
-                                <button>
+                                <AddToCartButton themeid={data?.id} forPagetoShowWhichDesign={2}/>
+                                {/* <button>
                                   <img src={cart} alt='icon' />
-                                </button>
+                                </button> */}
                               </div>
                               <div className='priceBlock'>
                                 <span className='originalPrice'>${data.regular_price}</span>

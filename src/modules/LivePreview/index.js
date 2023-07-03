@@ -6,29 +6,29 @@ import mobile from '../../assets/images/icon/smartphone.svg'
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { themeDetails } from '../../services/pages.service';
+import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 const LivePreview = () => {
 
     const [activeButton, setActiveButton] = useState('');
     const location = useLocation();
     const { state } = location;
     const { id } = useParams();
-    const [url, setUrl] = useState('');
+    const [themeData, setThemeData] = useState([]);
 
     useEffect(() => {
         fetchDetails(id);
-    }, []);
+    }, [id]);
 
     const fetchDetails = async (id) => {
         const { data } = await themeDetails(id);
-        setUrl(data?.data?.theme_data?.livepreview_url);
+        setThemeData(data?.data?.theme_data);
     };
 
     const handleClick = (button) => {
         setActiveButton(button);
     };
-
+    console.log('themeData',themeData)
     return (
         <>
             <Navbar className="fixed-top" bg="light" data-bs-theme="light">
@@ -50,11 +50,12 @@ const LivePreview = () => {
                         </button>
                     </div>
 
-                    <button className="btn btn-outline-warning">Add to cart <span className='ml-4'>$48</span></button>
+                    
+                    <AddToCartButton themeid={id} forPagetoShowWhichDesign={3} themePrice={themeData?.sale_price}/>
                 </Container>
             </Navbar>
 
-            <iframe className={activeButton} src={state?.url || url} width="100%"></iframe>
+            <iframe className={activeButton} src={state?.url || themeData?.livepreview_url} width="100%" title="theme preview"></iframe>
         </>
     )
 }

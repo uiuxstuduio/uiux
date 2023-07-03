@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './category.scss'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import cartIcon from '../../assets/images/icon/cart.svg';
 import { useDispatch } from 'react-redux';
 import { getCategories } from '../../redux/reducers/commonReducer.slice';
+import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 
 const CategoryPage = () => {
 
@@ -77,9 +77,10 @@ const CategoryPage = () => {
                                 to={{ pathname: `/preview/${category?.id}` }}
                               >Live Preview</Link>
 
-                              <Link to={`#`} className='cartBtn'>
+                              <AddToCartButton themeid={category?.id} forPagetoShowWhichDesign={2}/>
+                              {/* <Link to={`#`} className='cartBtn'>
                                 <img src={cartIcon} alt="Card Images" />
-                              </Link>
+                              </Link> */}
                             </div>
                           </div>
                         </div>

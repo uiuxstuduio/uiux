@@ -1,4 +1,4 @@
-import { getRequest, postRequest } from '.';
+import { getRequest, getRequestPayload, postRequest } from '.';
 export const getHomePageContent = async () => {
   const endpoint = 'home_page_thmem_list';
   try {
@@ -44,6 +44,16 @@ export const getMenuCategories = async (payload) => {
   };
   try {
     return await postRequest(endpoint,payloads);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const getSreachResult = async (searchdata) => {
+  const endpoint = 'theme_search';
+  try {
+    return await getRequestPayload(endpoint,searchdata);
   } catch (error) {
     console.log(error);
   }

@@ -7,9 +7,9 @@ import doc from '../../../assets/images/icon/doc.svg';
 import download from '../../../assets/images/icon/arrow-down-square.svg';
 import star from '../../../assets/images/icon/star.svg';
 
-const Banner  = ({ data }) => {
+const Banner = ({ data }) => {
   // const BannerData = data['banner_product'];
-  console.log('BannerData',data)
+  console.log('BannerData', data)
   const bannerData = data.banner_product[0]
   return (
     <section className="mainBanner banner_Wrapper">
@@ -40,14 +40,16 @@ const Banner  = ({ data }) => {
                   </div>
                 </div>
                 <p>
-                 {bannerData ? bannerData.short_description : 'No description added'}
+                  {bannerData ? bannerData.short_description : 'No description added'}
                 </p>
                 <div className="d-flex align-items-center btnBlock">
-                  <Link className="btn_wrapper" to={bannerData?.liveurl}>
+                  <Link className="btn_wrapper" target='_blank'
+                    to={{ pathname: `/preview/${bannerData.id}` }}
+                    state={{ url: bannerData?.liveurl, id: bannerData?.id }}>
                     Live Preview
                   </Link>
                   <Link className="btn_wrapper light" to={`product-details/${bannerData.id}`}>
-                  View detail
+                    View detail
                   </Link>
                 </div>
               </div>

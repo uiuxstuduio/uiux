@@ -17,6 +17,15 @@ const getRequest = async (path) => {
   return await axios.get(API_ENDPOINT, TOKEN_CONFIG);
 };
 
+// Handling GET request with payload
+const getRequestPayload = async (path,payload) => {
+  const API_ENDPOINT = `${baseUrl}/${path}`;
+  return await axios.get(API_ENDPOINT, {
+    payload,
+    ...TOKEN_CONFIG
+  });
+};
+
 const getReqWithoutToken = async (path) => {
   const API_ENDPOINT = `${baseUrl}/${path}`;
   return await axios.get(API_ENDPOINT);
@@ -27,4 +36,4 @@ const postRequest = async (path, payload) => {
   const API_ENDPOINT = `${baseUrl}/${path}`;
   return await axios.post(API_ENDPOINT, payload, FORM_DATA);
 };
-export { getRequest, getReqWithoutToken, postRequest };
+export { getRequest, getReqWithoutToken, postRequest,getRequestPayload };

@@ -63,7 +63,7 @@ const Trending = ({ data }) => {
                                             >
                                                 Live Preview
                                             </Link>
-                                            <AddToCartButton productid={val.id} />                                           
+                                            <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>                                           
                                         </div>
                                         <div className='Title'>
                                             <h2>{val.name}</h2>

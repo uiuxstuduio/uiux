@@ -3,25 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../services/cart.service';
 import { hash } from '../../utils/hash';
 import { getCart, setCartSession } from '../../redux/reducers/cartReducer.slice';
-import { useLocation, useNavigate } from 'react-router';
+import {  useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import cartIcon from '../../assets/images/icon/cart.svg';
+import './addtocart.scss';
 
-const AddToCartButton = ({ productid }) => {
+const AddToCartButton = ({ themeid, forPagetoShowWhichDesign, themePrice }) => {
   // const [cartLoading, setCartLoading] = useState(false);
+  // console.log('themeid', themeid)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const pathnameArray = location.pathname.split('/').filter(Boolean);
-  const currentPath = pathnameArray[0];
-  console.log('location', currentPath)
+  // const location = useLocation();
+  // const pathnameArray = location.pathname.split('/').filter(Boolean);
+  // const currentPath = pathnameArray[0];
+  // console.log('location', currentPath)
   const cartData = useSelector((state) => state.cart);
   const items = cartData.items.map((item) => item.theme_id);
-  // console.log('items', items);
-  console.log('cartData', cartData);
+  // console.log('items themeid', items);
+  // console.log('cartData', cartData);
 
   const [cartLoading, setCartLoading] = useState(false);
-  const inCart = items.includes(productid);
+  const inCart = items.includes(String(themeid));
+
+  // console.log('inCart', inCart)
 
   const addToCartHandler = async () => {
     setCartLoading(true);
@@ -36,7 +40,7 @@ const AddToCartButton = ({ productid }) => {
       dispatch(setCartSession({ sessionKey, expiry }));
     }
     const payload = {
-      product_id: productid,
+      product_id: themeid,
       session_key: sessionKey,
     };
     const addToCartRes = await addToCart(payload);
@@ -53,39 +57,63 @@ const AddToCartButton = ({ productid }) => {
 
       {inCart ? (
         <>
-          <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
-            View In Cart
-          </button>
-          <Link to={`#`} className='cartBtn incart' onClick={() => navigate('/cart')}>
-            <img src={cartIcon} alt="Card Images" />
-          </Link>
+          {forPagetoShowWhichDesign === 1 && (
+            <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
+              View In Cart
+            </button>
+          )}
+          {forPagetoShowWhichDesign === 2 && (
+            <button className='cartBtn incart' onClick={() => navigate('/cart')}>
+              <img src={cartIcon} alt="Card Images" />
+            </button>
+          )}
+          {forPagetoShowWhichDesign === 3 && (
+            <button className="btn btn-outline-warning" onClick={() => navigate('/cart')}>View in cart</button>
+          )}
         </>
       ) : (
         <>
           {cartLoading ? (
             <>
-              <button
-                className="btn_wrapper light"
-                style={{
-                  backgroundColor: 'transparent',
-                  color: 'white',
-                  border: '1px solid white'
-                }}
-              >
-                Loading
-              </button>
-              <Link to={`#`} className='cartBtn'>
-              Loading
-              </Link>
+              {forPagetoShowWhichDesign === 1 && (
+                <button
+                  className="btn_wrapper light"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: 'white',
+                    border: '1px solid white'
+                  }}
+                >
+                  Loading
+                </button>
+              )}
+
+              {forPagetoShowWhichDesign === 2 && (
+                <Link to={`/cart/`} className='cartBtn'>
+                  <span className="loaderCircle"></span>
+                </Link>
+              )}
+              {forPagetoShowWhichDesign === 3 && (
+                <button className="btn btn-outline-warning">Loading..</button>
+              )}
             </>
           ) : (
             <>
-              <button className="btn_wrapper light" onClick={addToCartHandler}>
-                Add to cart
-              </button>
-              <Link to={`#`} className='cartBtn' onClick={addToCartHandler}>
-                <img src={cartIcon} alt="Card Images" />
-              </Link>
+              {forPagetoShowWhichDesign === 1 && (
+                <button className="btn_wrapper light" onClick={addToCartHandler}>
+                  Add to cart
+                </button>
+              )}
+              {forPagetoShowWhichDesign === 2 && (
+                <Link className='cartBtn noitems' onClick={addToCartHandler}>
+                  {/* <span className="loaderCircle"></span> */}
+                  <img src={cartIcon} alt="Card Images" />
+                </Link>
+              )}
+
+              {forPagetoShowWhichDesign === 3 && (
+                <button className="btn btn-outline-warning" onClick={addToCartHandler}>Add to cart <span className='ml-4'>${themePrice}</span></button>
+              )}
             </>
           )}
         </>

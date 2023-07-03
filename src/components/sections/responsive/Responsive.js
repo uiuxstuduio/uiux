@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import cartIcon from '../../../assets/images/icon/cart.svg';
 import './responsive.scss';
 
 // Import Swiper React components
@@ -15,6 +14,7 @@ import "swiper/css/navigation";
 // import required modules
 // import { FreeMode, Pagination } from 'swiper';
 import { Navigation } from 'swiper';
+import AddToCartButton from '../../AddToCartButton/AddToCartButton';
 
 const Responsive = ({ data }) => {
     //   console.log(data['responsive_items'])
@@ -72,9 +72,7 @@ const Responsive = ({ data }) => {
                                             >
                                                 Live Preview
                                             </Link>
-                                            <Link to={`#`} className='cartBtn'>
-                                                <img src={cartIcon} alt="Card Images" />
-                                            </Link>
+                                            <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>   
 
 
                                         </div>
