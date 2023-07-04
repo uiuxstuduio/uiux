@@ -7,12 +7,26 @@
 }
 body {
   box-sizing: border-box;
-  background: #0f1014;
+  background: #030303;
   color: $white;
   font-size: 16px;
   line-height: 26px;
   font-family: $Inter-Regular;
+  background: rgb(13,9,92);
+background: -moz-linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
+background: -webkit-linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
+background: linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0d095c",endColorstr="#0d095c",GradientType=1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+// .bgbody{
+//   object-fit: cover;
+//   object-position:center;
+//   opacity: 1;
+//   transition: opacity 0.5s linear;
+// }
 
 // h1,
 // h2,
@@ -255,7 +269,7 @@ main {
   border-left-color: transparent;
   border-radius: 50%;
   width: 27px;
-  height: 19.75px;
+  height: 18.75px;
   -webkit-animation: spin89345 1s linear infinite;
   animation: spin89345 1s linear infinite;
 

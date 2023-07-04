@@ -1,0 +1,21 @@
+@media (max-width:767px){
+    .mobileFooter {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        z-index: 10;
+        li {
+          flex: 1 1 auto;
+          text-align: center;
+          .MuiBadge-badge{
+            background: #ffb43a;
+          }
+        }
+      }
+}
+

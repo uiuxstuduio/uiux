@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../redux/reducers/authReducer.slice';
@@ -14,7 +14,19 @@ import tech5 from '../../../assets/images/technology/affiliate.png';
 import tech6 from '../../../assets/images/technology/mobile-app.png';
 import tech7 from '../../../assets/images/technology/social-media.png';
 import tech8 from '../../../assets/images/technology/branding.png';
-
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import PersonAdd from '@mui/icons-material/PersonAdd';
 const Header = () => {
   const dispatch = useDispatch();
   const logoutHandler = () => {
@@ -23,6 +35,16 @@ const Header = () => {
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const menu = useSelector((state) => state.commonData.menuData);
+
+
+  const [anchorEl, setAnchorEl] = useState();
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
 
   return (
@@ -35,7 +57,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="right_wrapper">
-            <div className="navbar_block">
+            <div className="navbar_block d-none">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -261,6 +283,80 @@ const Header = () => {
                 <>
                   <div className="profile_nav">
                     <li className="nav-item dropdown">
+                      <Tooltip title="Account settings">
+                        <IconButton
+                          onClick={handleClick}
+                          size="small"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? 'account-menu' : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? 'true' : undefined}
+                        >
+                          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                        </IconButton>
+                      </Tooltip>
+                      <Menu
+                        anchorEl={anchorEl}
+                        id="account-menu"
+                        open={open}
+                        onClose={handleClose}
+                        onClick={handleClose}
+                        PaperProps={{
+                          elevation: 0,
+                          sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            mt: 1.5,
+                            '& .MuiAvatar-root': {
+                              width: 32,
+                              height: 32,
+                              ml: -0.5,
+                              mr: 1,
+                            },
+                            '&:before': {
+                              content: '""',
+                              display: 'block',
+                              position: 'absolute',
+                              top: 0,
+                              right: 14,
+                              width: 10,
+                              height: 10,
+                              bgcolor: 'background.paper',
+                              transform: 'translateY(-50%) rotate(45deg)',
+                              zIndex: 0,
+                            },
+                          },
+                        }}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                      >
+                        <MenuItem onClick={handleClose}>
+                          <Avatar /> Profile
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <Avatar /> My account
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon>
+                            <PersonAdd fontSize="small" />
+                          </ListItemIcon>
+                          Add another account
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon>
+                            <Settings fontSize="small" />
+                          </ListItemIcon>
+                          Settings
+                        </MenuItem>
+                        <MenuItem onClick={handleClose}>
+                          <ListItemIcon>
+                            <Logout fontSize="small" />
+                          </ListItemIcon>
+                          Logout
+                        </MenuItem>
+                      </Menu>
+
                       <Link
                         className="nav-link dropdown-toggle"
                         to="#"
@@ -269,7 +365,8 @@ const Header = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <img src={profileIcon} alt="User Icon" />
+                        {/* <img src={profileIcon} alt="User Icon" /> */}
+                        <AccountCircleOutlinedIcon />
                         <span style={{ textTransform: 'capitalize' }}> {user.user_login} </span>
                         <svg
                           width="17"
@@ -323,16 +420,23 @@ const Header = () => {
                   </div>
                 </>
               ) : (
-                <div className="d-none d-md-flex align-items-center btns">
-                  <Link to="/login" className="btn_wrapper">
-                    Login
-                  </Link>
-                  <Link to="/signup" className="btn_wrapper light">
-                    Sign Up
-                  </Link>
-                </div>
+                <>
+                  <div className="d-none d-md-flex align-items-center btns">
+                    <Link to="/login" className="btn_wrapper">
+                      Login
+                    </Link>
+                    <Link to="/signup" className="btn_wrapper light">
+                      Sign Up
+                    </Link>
+                  </div>
+                  <div className="d-flex d-md-none align-items-center btns mobile-btn">
+                    <Link to="/login" className="btn_wrapper">
+                      Login
+                    </Link>
+                  </div>
+                </>
               )}
-              <Link to="/cart">
+              <Link to="/cart" className='d-none d-md-block'>
                 <div className="cart_wrapper position-relative">
                   <img src={cartIcon} alt="Cart Icon" />
                   {cart.items.length !== 0 && <div className="notification">{cart.items.length || 0}</div>}

@@ -34,6 +34,7 @@ const AnimatedRoute = () => {
           <Route element={<DefaultLayout component={<Settings />} />} path="/settings" />
           <Route element={<DefaultLayout component={<Profile />} />} path="/profile" />
           <Route element={<DefaultLayout component={<Checkout />} />} path="/checkout" />
+          {/* <Route element={<DefaultLayout component={<Purchases />} />} path="/purchases" /> */}
         </Route>
         {/* this will be login route */}
         <Route element={<DefaultLayout component={<Home />} />} path="/" />
