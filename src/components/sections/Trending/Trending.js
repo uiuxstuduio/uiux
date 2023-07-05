@@ -25,8 +25,8 @@ const Trending = ({ data }) => {
                 <Swiper
                     // loop={true}
                     grabCursor={true}
-                    slidesPerView={1}
-                    spaceBetween={0}
+                    slidesPerView={2.2}
+                    spaceBetween={10}
                     navigation={true}
                     breakpoints={{
                         1400: {
@@ -39,10 +39,10 @@ const Trending = ({ data }) => {
                             slidesPerView: 4,
                         },
                         767: {
-                            slidesPerView: 3,
+                            slidesPerView: 3.2,
                         },
                         576: {
-                            slidesPerView: 2,
+                            slidesPerView: 2.2,
                         },
                     }}
                     modules={[Navigation]}

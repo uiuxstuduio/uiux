@@ -12,7 +12,7 @@ const Banner = ({ data }) => {
   console.log('BannerData', data)
   const bannerData = data.banner_product[0]
   return (
-    <section className="mainBanner banner_Wrapper">
+    <section className="mainBanner banner_Wrapper afterloginbanner">
       <div className="banner_bkg">
         <img src={bannerData?.feture_image} alt="Banner Background" />
       </div>
@@ -42,7 +42,7 @@ const Banner = ({ data }) => {
                 <p>
                   {bannerData ? bannerData.short_description : 'No description added'}
                 </p>
-                <div className="d-flex align-items-center btnBlock">
+                <div className="d-flex align-items-center btnBlocks">
                   <Link className="btn_wrapper" target='_blank'
                     to={{ pathname: `/preview/${bannerData.id}` }}
                     state={{ url: bannerData?.liveurl, id: bannerData?.id }}>
