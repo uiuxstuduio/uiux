@@ -62,7 +62,7 @@ export default function Products() {
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <div className="breadcrumb_wrapper">
+        <div className="breadcrumb_wrapper breadMobile">
           <h1 className="fw-bold">Our Top Products</h1>
           <p>
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an

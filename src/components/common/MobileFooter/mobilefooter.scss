@@ -26,7 +26,8 @@
   }
   .drawer{
     .MuiDrawer-paper{
-      background-color: #00000091;
+      // background-color: #00000091;
+      background: linear-gradient(198deg, rgb(67, 67, 67) 6.56%, rgb(0, 0, 0) 93.57%);
       backdrop-filter: blur(10px);
     }
     .mobileDrawer {
@@ -136,8 +137,25 @@
     background-color:#212529
   }
 
+  .MuiFormControl-root{
+    .MuiFormLabel-root{
+      color: #fff;
+    }
+    .MuiInputBase-root{
+      input{
+        color: #ffb43a;
+      }
+      &:after{
+        border-bottom: 2px solid #ffb43a;
+      }
+      &::before{
+        border-color: #ffffff57;
+      }
+    }
+  }
+
   .MuiDialog-paper{
-    background: #161515;
+    background: linear-gradient(100.66deg, rgb(67, 67, 67) 6.56%, rgb(0, 0, 0) 93.57%);
   }
   .MuiListItemText-primary {
     color: #ffb43a;

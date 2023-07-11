@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import Badge from '@mui/material/Badge';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import { useLocation, useNavigate, } from 'react-router';
+import {  useNavigate, } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dialog, Divider, Drawer } from '@mui/material';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
@@ -38,10 +38,12 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
 import ArrowOutwardOutlinedIcon from '@mui/icons-material/ArrowOutwardOutlined';
 import CardMedia from '@mui/material/CardMedia';
 import stcI from '../../../assets/images/design1.png'
+import TextField from '@mui/material/TextField';
+
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -49,7 +51,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const MobileFooter = () => {
     const cart = useSelector((state) => state.cart);
     const navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
     const dispatch = useDispatch();
 
     const [open, setOpen] = useState(false);
@@ -172,7 +174,7 @@ const MobileFooter = () => {
 
                     <Divider className='' />
 
-                    <List sx={{ width: '100%', maxWidth: 360 }}
+                    <List sx={{ width: '100%'}}
                         component="nav" className='nestedmobile'
                         aria-labelledby="nested-list-subheader">
 
@@ -253,7 +255,7 @@ const MobileFooter = () => {
                 onClose={() => setOpenSearch(false)}
                 TransitionComponent={Transition}
                 className='searchModal'
-                
+
             >
                 <AppBar sx={{ position: 'relative' }}>
                     <Toolbar>
@@ -268,13 +270,17 @@ const MobileFooter = () => {
                         <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
                             Search theme
                         </Typography>
-                        <Button autoFocus color="inherit" onClick={() => setOpenSearch(false)}>
+                        <Button variant="outlined" autoFocus color="inherit" onClick={() => setOpenSearch(false)}>
                             search
                         </Button>
                     </Toolbar>
                 </AppBar>
                 <List sx={{ width: '100%', }}>
-                    <ListItem alignItems="flex-start" sx={{gap:"10px"}}>
+                    <Box sx={{ margin: "0 16px 20px 16px" }}>
+                        <TextField id="standard-basic" label="Type theme name to search..." variant="standard" sx={{ width: "100%" }} />
+                    </Box>
+
+                    <ListItem alignItems="flex-start" sx={{ gap: "10px" }} component="button">
                         <ListItemAvatar >
                             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                             <CardMedia
@@ -283,16 +289,16 @@ const MobileFooter = () => {
                                 width="50"
                                 image={stcI}
                                 alt="Paella dish"
-                                
+
                             />
                         </ListItemAvatar>
-                        <ListItemText sx={{color:'#fff'}}
+                        <ListItemText sx={{ color: '#fff' }}
                             primary="Avada Bootstrap Theme"
-                            noWrap={true}
+
                             secondary={
-                                <React.Fragment sx={{color:'#fff'}}>
+                                <React.Fragment >
                                     <Typography
-                                        sx={{ display: 'inline',color:'#fff' }}
+                                        sx={{ display: 'inline', color: '#fff' }}
                                         component="span"
                                         variant="body2"
                                         color="text.primary"
@@ -303,10 +309,10 @@ const MobileFooter = () => {
                                 </React.Fragment>
                             }
                         />
-                        <ArrowOutwardOutlinedIcon sx={{color:'#fff'}}/>
+                        <ArrowOutwardOutlinedIcon sx={{ color: '#fff' }} />
                     </ListItem>
-                    <Divider variant="inset" component="li" sx={{borderColor:'#ffb43a9c'}}/>
-                    <ListItem alignItems="flex-start" sx={{gap:"10px"}}>
+                    <Divider variant="inset" component="li" sx={{ borderColor: '#ffb43a9c' }} />
+                    <ListItem alignItems="flex-start" sx={{ gap: "10px" }} component="button">
                         <ListItemAvatar >
                             {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" /> */}
                             <CardMedia
@@ -315,16 +321,16 @@ const MobileFooter = () => {
                                 width="50"
                                 image={stcI}
                                 alt="Paella dish"
-                                
+
                             />
                         </ListItemAvatar>
-                        <ListItemText sx={{color:'#fff'}}
+                        <ListItemText sx={{ color: '#fff' }}
                             primary="Avada Bootstrap Theme"
-                            noWrap={true}
+
                             secondary={
-                                <React.Fragment sx={{color:'#fff'}}>
+                                <React.Fragment >
                                     <Typography
-                                        sx={{ display: 'inline',color:'#fff' }}
+                                        sx={{ display: 'inline', color: '#fff' }}
                                         component="span"
                                         variant="body2"
                                         color="text.primary"
@@ -335,7 +341,7 @@ const MobileFooter = () => {
                                 </React.Fragment>
                             }
                         />
-                        <ArrowOutwardOutlinedIcon sx={{color:'#fff'}}/>
+                        <ArrowOutwardOutlinedIcon sx={{ color: '#fff' }} />
                     </ListItem>
                 </List>
             </Dialog>
