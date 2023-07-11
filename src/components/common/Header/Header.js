@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../redux/reducers/authReducer.slice';
@@ -27,14 +27,19 @@ import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PersonAdd from '@mui/icons-material/PersonAdd';
+
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logoutHandler = () => {
     dispatch(logoutUser());
+    navigate('/')
   };
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
   const menu = useSelector((state) => state.commonData.menuData);
+
+
 
 
   const [anchorEl, setAnchorEl] = useState();
@@ -42,8 +47,24 @@ const Header = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (name) => {
     setAnchorEl(null);
+    switch (name) {
+      case 'profile':
+        navigate('/profile')
+        break;
+      case 'settings':
+        navigate('/settings')
+        break;
+      case 'downloads':
+        navigate('/downloads')
+        break;
+      case 'favorites':
+        navigate('/favorites')
+        break;
+      default:
+        break;
+    }
   };
 
 
@@ -57,7 +78,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="right_wrapper">
-            <div className="navbar_block d-none">
+            <div className="navbar_block d-none d-md-block">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -293,6 +314,8 @@ const Header = () => {
                           aria-expanded={open ? 'true' : undefined}
                         >
                           <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                          {/* <span className="ms-2" style={{ textTransform: 'capitalize' }}> {user.user_login} </span> */}
+
                         </IconButton>
                       </Tooltip>
                       <Menu
@@ -330,26 +353,11 @@ const Header = () => {
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                       >
-                        <MenuItem onClick={handleClose}>
-                          <Avatar /> Profile
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <Avatar /> My account
+                        <MenuItem onClick={() => handleClose('profile')}>
+                           My Account
                         </MenuItem>
                         <Divider />
-                        <MenuItem onClick={handleClose}>
-                          <ListItemIcon>
-                            <PersonAdd fontSize="small" />
-                          </ListItemIcon>
-                          Add another account
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
-                          <ListItemIcon>
-                            <Settings fontSize="small" />
-                          </ListItemIcon>
-                          Settings
-                        </MenuItem>
-                        <MenuItem onClick={handleClose}>
+                        <MenuItem onClick={() => logoutHandler('logout')}>
                           <ListItemIcon>
                             <Logout fontSize="small" />
                           </ListItemIcon>
@@ -358,7 +366,7 @@ const Header = () => {
                       </Menu>
 
                       <Link
-                        className="nav-link dropdown-toggle"
+                        className="nav-link dropdown-toggle d-none"
                         to="#"
                         id="navbarDropdown"
                         role="button"
@@ -367,7 +375,6 @@ const Header = () => {
                       >
                         {/* <img src={profileIcon} alt="User Icon" /> */}
                         <AccountCircleOutlinedIcon />
-                        <span style={{ textTransform: 'capitalize' }}> {user.user_login} </span>
                         <svg
                           width="17"
                           height="16"

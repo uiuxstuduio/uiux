@@ -34,8 +34,8 @@ const Responsive = ({ data }) => {
                 <Swiper
                     // loop={true}
                     grabCursor={true}
-                    slidesPerView={1}
-                    spaceBetween={0}
+                    slidesPerView={1.6}
+                    spaceBetween={10}
                     navigation={true}
                     breakpoints={{
                         1400: {
@@ -48,7 +48,7 @@ const Responsive = ({ data }) => {
                             slidesPerView: 3,
                         },
                         767: {
-                            slidesPerView: 2,
+                            slidesPerView: 2.2,
                         },
                         576: {
                             slidesPerView: 1,

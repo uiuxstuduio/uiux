@@ -34,8 +34,9 @@ import AddCollectionContent from './AddCollectionContent';
 import CreateCollectionContent from './CreateCollectionContent';
 import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 const ProductDetails = () => {
-  const { id } = useParams();
-  // console.log('Current theme_id',id);
+  // const {id} = useParams();
+  const themeid = useParams();
+  console.log('Current theme_id',themeid);
   const userLogin = useSelector((state) => state.user.user_login);
 
   // const cartData = useSelector((state) => state.cart);
@@ -65,10 +66,11 @@ const ProductDetails = () => {
   };
   useEffect(() => {
     setOpen(true);
-    fetchDetails(id);
-  }, [id]);
+    fetchDetails(themeid?.id);
+  }, [themeid?.id]);
 
   const fetchDetails = async (id) => {
+    console.log('fetchDetails',id)
     const { data } = await themeDetails(id);
     setThemeData(data.data);
     setOpen(false);
@@ -133,7 +135,7 @@ const ProductDetails = () => {
                           >
                             Live Preview
                           </Link>
-                          <AddToCartButton productid={id} />
+                          <AddToCartButton productid={themeid?.id} forPagetoShowWhichDesign={1}/>
                           {/* {inCart ? (
                             <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
                               View In Cart
@@ -417,7 +419,7 @@ const ProductDetails = () => {
                       selectedCollection={selectedCollection}
                       setSelectedCollection={setSelectedCollection}
                       setToCollection={setToCollection}
-                      themeId={id}
+                      themeId={themeid?.id}
                       close={() => setShow(false)}
                     />
                   </fieldset>

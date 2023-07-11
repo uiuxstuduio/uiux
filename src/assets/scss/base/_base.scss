@@ -12,11 +12,11 @@ body {
   font-size: 16px;
   line-height: 26px;
   font-family: $Inter-Regular;
-  background: rgb(13,9,92);
-background: -moz-linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
-background: -webkit-linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
-background: linear-gradient(124deg, #0c0a34 0%, rgba(3,3,3,1) 50%, #0c0a34 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0d095c",endColorstr="#0d095c",GradientType=1);
+  background: rgb(13, 9, 92);
+  background: -moz-linear-gradient(124deg, #0c0a34 0%, rgba(3, 3, 3, 1) 50%, #0c0a34 100%);
+  background: -webkit-linear-gradient(124deg, #0c0a34 0%, rgba(3, 3, 3, 1) 50%, #0c0a34 100%);
+  background: linear-gradient(124deg, #0c0a34 0%, rgba(3, 3, 3, 1) 50%, #0c0a34 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0d095c",endColorstr="#0d095c",GradientType=1);
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
@@ -234,7 +234,7 @@ input[type='number'] {
     text-transform: capitalize;
     color: $white;
     @media screen and (max-width: 767px) {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 22px;
     }
   }
@@ -257,6 +257,8 @@ input[type='number'] {
       padding: 5px 12px;
       min-width: 80px;
       margin-left: 8px;
+      border: 0;
+      background: none;
     }
   }
 }
@@ -278,25 +280,68 @@ main {
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
     }
-  
+
     100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
   }
-  
+
   @keyframes spin89345 {
     0% {
       -webkit-transform: rotate(0deg);
       transform: rotate(0deg);
     }
-  
+
     100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
     }
   }
-  
 }
 
+.slider_wrapper {
+  @media (max-width: 767px) {
+    .title{
+      margin: 0;
+    }
+    .swiper-slide{
+      padding: 0;
+      margin: unset;
+     }
+    .cardBlock {
+      height: 220px !important;
 
+      .tray-cardHover {
+        .tray-cardDescription {
+          padding: 5px;
+          padding-top: 10px;
+          .previewBtn {
+            padding: 4px;
+            border-radius: 4px;
+            font-size: 10px;
+            line-height: normal;
+          }
+          .discripion{
+            display: none;
+            margin: 0;
+          }
+        }
+      }
+    }
+    &.ResponsiveWrapper {
+      .cardBlock {
+        max-height: 300px !important;
+        height: 300px !important;
+      }
+    }
+  }
+}
+
+@media (max-width:767px){
+  .heading p{
+    font-size: 13px !important;
+    line-height: 18px;
+    margin-bottom: 30px;
+  }
+}
