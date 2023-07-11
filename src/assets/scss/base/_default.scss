@@ -20,13 +20,16 @@ html {
 
 section {
     margin-bottom: 100px;
+    @media screen and (max-width:1399px) {
+        margin-bottom: 60px;
+    }
 
     @media(max-width: 991px) {
-        margin-bottom: 80px;
+        margin-bottom: 50px;
     }
 
     @media(max-width: 767px) {
-        margin-bottom: 60px;
+        margin-bottom: 40px;
     }
 }
 

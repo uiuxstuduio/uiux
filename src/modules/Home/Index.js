@@ -69,9 +69,9 @@ const Home = () => {
               );
             } else if (index === 2) {
               return (
-                <section key={index}>
+                <Fragment key={index}>
                   <Trending data={data} />
-                </section>
+                </Fragment>
               );
             } else if (index === 3) {
               return (
@@ -94,7 +94,7 @@ const Home = () => {
 
         <Responsive data={data} />
 
-        <section className="normal_wrapper">
+        <section className="normal_wrapper download_Wrapper">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-5">
