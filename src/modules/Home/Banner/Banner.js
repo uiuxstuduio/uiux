@@ -14,7 +14,7 @@ const Banner = ({ data }) => {
   return (
     <section className="mainBanner banner_Wrapper afterloginbanner">
       <div className="banner_bkg">
-        <img src={bannerData?.feture_image} alt="Banner Background" />
+        <img src={bannerData?.banner_image} alt="Banner Background" />
       </div>
       <div className="container">
         <div className='TextBlock'>

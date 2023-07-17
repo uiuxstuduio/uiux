@@ -96,7 +96,7 @@
             // transform: inherit;
             &.swiper-slide-active{                
                 .tray-cardHover{
-                    bottom: 0;
+                    bottom: -110% !important;
                 }
             }
         }
@@ -107,7 +107,25 @@
     overflow: hidden;
     border-radius: 8px;
     height: 330px;
-    // padding: 0 6px;
+    @media screen and (max-width:1899px) {
+        height: 300px;
+    }
+    @media screen and (max-width:1799px) {
+        height: 290px;
+    }
+    @media screen and (max-width:1699px) {
+        height: 250px;
+    }
+    @media screen and (max-width:1599px) {
+        height: 230px;
+    }
+    @media screen and (max-width:1399px) {
+        height: 300px;
+    }
+    @media screen and (max-width:1299px) {
+        height: 280px;
+    }
+
     .cardImg{
         // display: inline-flex;
         width: 100%;
@@ -271,5 +289,8 @@
             margin-left: 5px;
             line-height: 1.2;
         }
+    }
+    @media screen and (max-width:768px) {
+        bottom: -110% !important;
     }
 }
