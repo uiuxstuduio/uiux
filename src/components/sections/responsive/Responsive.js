@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import "swiper/css/navigation";
 
-// import required modules
+// import required modules 
 // import { FreeMode, Pagination } from 'swiper';
 import { Navigation } from 'swiper';
 
