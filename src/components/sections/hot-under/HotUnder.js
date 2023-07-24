@@ -68,7 +68,6 @@ const HotUnder = ({ data }) => {
                                     trigger={                                    
                                         <Link to={`/product-details/${val.id}`} className='cardImg'>
                                             <img src={val.featured_image} alt="Card Images" />
-                                            {/* <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/2x3/312x468/af24bfc92b1731b1987c6b2f41a24b3c_1280x1920.webp" alt="Card Images" /> */}
                                         </Link>
                                     }
                                     position={'center center'}
@@ -80,7 +79,7 @@ const HotUnder = ({ data }) => {
                                     <div className='hover-card-container'>
                                         <div className='card-image-content'>
                                             <Link to={`/product-details/${val.id}`} className='cardImg'>
-                                                <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/16x9/320x180/af24bfc92b1731b1987c6b2f41a24b3c_1920x1080.webp" alt="Card Images" />
+                                                <img src={val.banner_image} alt="Card Thumbnail" />
                                             </Link>
                                         </div>
                                         <div className='card-text-content'>                                            

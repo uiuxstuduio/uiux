@@ -100,7 +100,7 @@ const Cart = () => {
                         ))}
                       </>
                     ) : (
-                      <div className="message-box text-center">
+                      <div className="message-box">
                         <h1 className="fw-bold opacity-50">Your cart is empty!</h1>
                         <h6 className="mt-3 mb-3 lg:mb-5 opacity-50">
                           You must add some items in order to checkout. You can find out lots of
