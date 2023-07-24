@@ -10,10 +10,11 @@
         max-width: 100%;
         padding: 0 60px;
         @media screen and (max-width:1260px) {
-            padding: 0 30px;
+            // padding: 0 30px;
         }
-        @media screen and (max-width:575px) {
+        @media screen and (max-width:1024px) {
             padding: 0 12px;
+            max-width: 960px;
         }
     }
     &.trending_wrapper{
@@ -28,24 +29,6 @@
     overflow: visible !important;
     display: flex;
     margin: 10px -5px 0;
-    // &:hover .swiper-slide {
-    //     transform: translateX(-10%);
-    //     @media screen and (max-width:768px) {
-    //         transform: translateX(0%);
-    //     }
-    // }
-    // .swiper-slide:hover ~ .swiper-slide {
-    //     transform: translateX(10%);
-    //     @media screen and (max-width:768px) {
-    //         transform: translateX(0%);
-    //     }
-    // }
-    // & .swiper-slide:hover {
-    //     transform: scale(1.1);
-    //     @media screen and (max-width:768px) {
-    //         transform: scale(1);
-    //     }
-    // }
     .swiper-button-next{
         background: linear-gradient(269.25deg,#0f1014 0.62%,rgba(15,16,20,0) 99.33%);
     }
@@ -56,11 +39,16 @@
         height: 100%;
         margin-top: 0;
         top: 0;
-        width: 6.5rem;
+        width: 3.4rem;
         margin: 0 -70px;
         @media screen and (max-width:1260px) {
-            width: 3rem;
-            margin: 0 -40px;
+            // width: 3rem;
+            // margin: 0 -40px;
+            width: 3.5rem;
+            margin: 0 -70px;
+        }
+        @media screen and (max-width:1024px) {
+            display: none;
         }
         @media screen and (max-width:768px) {
             margin: 0 -54px;
@@ -101,6 +89,7 @@
             }
         }
     }
+
 }
 .cardBlock{
     position: relative;
@@ -303,7 +292,6 @@
         bottom: -110% !important;
     }
 }
-
 .hover-card-container{
     width: 25vw;
     min-width: 340px;
@@ -414,30 +402,31 @@
         }
     }
 }
-// #popup-root{   
-//     &:hover{
-//         .hover-card-container{
-//             animation-name: scaling-in;        
-//         } 
-//     }
-// }
-// @keyframes scaling-in{
-//     0% {
-//         opacity: 0;
-//         transform: scale(0);
-//     }
-//     100% {
-//         opacity: 1;
-//         transform: scale(1);
-//     }
-// }
-// @keyframes scaling-out{
-//     0% {
-//         opacity: 1;
-//         transform: scale(1);
-//     }
-//     100% {
-//         opacity: 0;
-//         transform: scale(0);
-//     }
-// }
+
+@media screen and (max-width:1024px) {
+    #popup-root{
+       display: none; 
+    }
+}
+
+@keyframes anvil {
+    0% {
+      transform: scale(1) translateY(0px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+      transform: scale(0.96) translateY(10px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+}
+.popup-content {
+    animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) ;
+}
+

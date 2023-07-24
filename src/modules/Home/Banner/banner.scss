@@ -41,6 +41,11 @@
       padding: 0 12px;
     }
   }
+  @media (min-width: 992px){
+      .container{
+        max-width: 960px;
+      }
+  }
   .banner_bkg {
     position: absolute;
     left: 0;
@@ -181,7 +186,16 @@
     left: 0;
     bottom: 0;
     @media screen and (max-width: 1260px) {
-      padding: 20px 30px 180px;
+      padding: 20px 60px 180px;
+    }
+    @media screen and (max-width:1024px) {
+      padding: 20px 0px 180px;
+      left: auto;
+      right: auto;
+    }
+    @media (min-width: 992px){
+      // max-width: 960px;
+      margin: auto;
     }
     @media screen and (max-width: 767px) {
       margin-top: 210px;

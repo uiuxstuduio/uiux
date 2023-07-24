@@ -15,7 +15,9 @@ import "swiper/css/navigation";
 // import required modules
 // import { FreeMode, Pagination } from 'swiper';
 import { Navigation } from 'swiper';
+
 import AddToCartButton from '../../AddToCartButton/AddToCartButton';
+import Popup from 'reactjs-popup';
 
 const HotUnder = ({ data }) => {
     // console.log(data)
@@ -42,16 +44,16 @@ const HotUnder = ({ data }) => {
                             slidesPerView: 7,
                         },
                         1199: {
+                            slidesPerView: 6,
+                        },
+                        1025: {
                             slidesPerView: 5,
                         },
-                        991: {
-                            slidesPerView: 4,
-                        },
                         767: {
-                            slidesPerView: 3.2,
+                            slidesPerView: 4.2,
                         },
                         576: {
-                            slidesPerView: 2.2,
+                            slidesPerView: 3.2,
                         },
                     }}
                     modules={[Navigation]}
@@ -59,36 +61,48 @@ const HotUnder = ({ data }) => {
                 >
                     {HotUnderData.map((val, i) => (
                         <SwiperSlide key={i}>
-                            <div className='cardBlock'>
-                                <Link to={`/product-details/${val.id}`} className='cardImg'>
-                                    <img src={val.featured_image} alt="Card Images" />
-                                </Link>
-                                <div className='tray-cardHover'>
-                                    <div className='tray-cardDescription'>
-                                        <div className='d-flex'>
-                                            <Link className='previewBtn' target='_blank'
-                                                to={{ pathname: `/preview/${val.id}` }}
-                                                state={{ url: val?.liveurl, id: val.id }}
-                                            >
-                                                Live Preview
+                            <div className='cardBlock'>                                        
+                                <Popup
+                                    key={`tp-${i}`}
+                                    repositionOnResize={true}
+                                    trigger={                                    
+                                        <Link to={`/product-details/${val.id}`} className='cardImg'>
+                                            <img src={val.featured_image} alt="Card Images" />
+                                            {/* <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/2x3/312x468/af24bfc92b1731b1987c6b2f41a24b3c_1280x1920.webp" alt="Card Images" /> */}
+                                        </Link>
+                                    }
+                                    position={'center center'}
+                                    on={['hover', 'focus']}
+                                    arrow={false}
+                                    mouseEnterDelay={300}
+                                    mouseLeaveDelay={300}
+                                >
+                                    <div className='hover-card-container'>
+                                        <div className='card-image-content'>
+                                            <Link to={`/product-details/${val.id}`} className='cardImg'>
+                                                <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/16x9/320x180/af24bfc92b1731b1987c6b2f41a24b3c_1920x1080.webp" alt="Card Images" />
                                             </Link>
-                                            <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>   
+                                        </div>
+                                        <div className='card-text-content'>                                            
+                                            <span>${val.sale_price} <i>${val.regular_price}</i></span>
+                                            <div className='d-flex'>
+                                                <Link className='previewBtn' target='_blank'
+                                                    to={{ pathname: `/preview/${val.id}` }}
+                                                    state={{ url: val?.liveurl, id: val.id }}
+                                                >
+                                                    Live Preview
+                                                </Link>
+                                                <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>
+                                            </div>
                                         </div>
                                         <div className='Title'>
                                             <h2>{val.name}</h2>
-                                            <span>${val.sale_price}</span>
                                         </div>
                                         <div className='discripion'>
-                                            {/* <ul>
-                                                <li>HTML</li>
-                                                <li>CSS</li>
-                                                <li>JS</li>
-                                                <li>BOOTSTRAP</li>
-                                            </ul> */}
                                             <p>{val.short_description}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </Popup>
                             </div>
                         </SwiperSlide>
                     ))}

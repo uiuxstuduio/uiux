@@ -7,8 +7,8 @@ import 'swiper/css/free-mode';
 import "swiper/css/navigation";
 
 import { Navigation } from 'swiper';
-import AddToCartButton from '../../AddToCartButton/AddToCartButton';
 
+import AddToCartButton from '../../AddToCartButton/AddToCartButton';
 import Popup from 'reactjs-popup';
 
 const Trending = ({ data }) => {
@@ -33,13 +33,13 @@ const Trending = ({ data }) => {
                     navigation={true}
                     breakpoints={{
                         1400: {
-                            slidesPerView: 7.2,
+                            slidesPerView: 7,
                         },
                         1199: {
-                            slidesPerView: 6.2,
+                            slidesPerView: 6,
                         },
-                        991: {
-                            slidesPerView: 5.2,
+                        1025: {
+                            slidesPerView: 5,
                         },
                         767: {
                             slidesPerView: 4.2,
@@ -56,19 +56,23 @@ const Trending = ({ data }) => {
                             <div className='cardBlock'>                                        
                                 <Popup
                                     key={`tp-${i}`}
+                                    repositionOnResize={true}
                                     trigger={                                    
                                         <Link to={`/product-details/${val.id}`} className='cardImg'>
-                                            {/* <img src={val.featured_image} alt="Card Images" /> */}
-                                            <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/2x3/312x468/af24bfc92b1731b1987c6b2f41a24b3c_1280x1920.webp" alt="Card Images" />
+                                            <img src={val.featured_image} alt="Card Images" />
+                                            {/* <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/2x3/312x468/af24bfc92b1731b1987c6b2f41a24b3c_1280x1920.webp" alt="Card Images" /> */}
                                         </Link>
                                     }
                                     position={'center center'}
                                     on={['hover', 'focus']}
+                                    arrow={false}
+                                    mouseEnterDelay={300}
+                                    mouseLeaveDelay={300}
                                 >
                                     <div className='hover-card-container'>
                                         <div className='card-image-content'>
                                             <Link to={`/product-details/${val.id}`} className='cardImg'>
-                                                <img src="https://qqcdnpictest.mxplay.com/pic/51926f1240cdbcec6d9a4f26ca92cd78/en/16x9/320x180/af24bfc92b1731b1987c6b2f41a24b3c_1920x1080.webp" alt="Card Images" />
+                                                <img src="https://rdx.zzs.mybluehostin.me/projects/uiux/wp-content/uploads/2023/06/banner-teaholic.jpg" alt="Card Images" />
                                             </Link>
                                         </div>
                                         <div className='card-text-content'>                                            
@@ -101,25 +105,3 @@ const Trending = ({ data }) => {
 };
 
 export default Trending;
-
-
-{/* <div className='tray-cardHover'>
-<div className='tray-cardDescription'>
-    <div className='d-flex'>
-        <Link className='previewBtn' target='_blank'
-            to={{ pathname: `/preview/${val.id}` }}
-            state={{ url: val?.liveurl, id: val.id }}
-        >
-            Live Preview
-        </Link>
-        <AddToCartButton themeid={val?.id} forPagetoShowWhichDesign={2}/>                                           
-    </div>
-    <div className='Title'>
-        <h2>{val.name}</h2>
-        <span>${val.sale_price}</span>
-    </div>
-    <div className='discripion'>
-        <p>{val.short_description}</p>
-    </div>
-</div>
-</div> */}

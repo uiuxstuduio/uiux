@@ -1,24 +1,117 @@
 .ResponsiveWrapper{
-  .cardSlider{
-    .swiper-slide{
-      &:hover {
-        transform: scale(1.04);
-        @media screen and (max-width:768px) {
-            transform: scale(1);
-        }
-      }
+  // .cardSlider{
+  //   .swiper-slide{
+  //     &:hover {
+  //       transform: scale(1.04);
+  //       @media screen and (max-width:768px) {
+  //           transform: scale(1);
+  //       }
+  //     }
+  //   }
+  //   .cardBlock{
+  //     height: 660px;
+  //     @media screen and (max-width:575px) {
+  //       max-height: 600px;
+  //     }
+  //   }
+  // }
+  // .cartBtn{
+  //   .loaderCircle{
+  //     width: 25px;
+  //     height: 19.75px;
+  //   }
+  // }
+  .itemTop{
+    position: relative;
+    padding-left: 30px;
+    overflow: hidden;   
+    @media screen and (max-width:575px) {
+      padding-left: 15px;
     }
-    .cardBlock{
-      height: 660px;
+    .Numbers{
+      position: absolute;
+      color: #030303;
+      font-size: 100px;
+      line-height: 78px;
+      bottom: 0;
+      font-weight: bold;
+      left: 0px;
+      text-shadow: 1vmin 0 4vmin #141414;
+      transform: translate(0, 0);
+      -webkit-text-stroke: 1px white;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: -8.5px;
+      @media screen and (max-width:767px) {
+        font-size: 70px;
+        line-height: 58px;
+      }
       @media screen and (max-width:575px) {
-        max-height: 600px;
+        font-size: 50px;
+        line-height: 38px;
       }
     }
   }
-  .cartBtn{
-    .loaderCircle{
-      width: 25px;
-      height: 19.75px;
+  .Responsive_cardSlider{
+    .top-picks__item {
+        overflow: hidden;   
+        position: relative;
+        padding-left: 30px;
+        scroll-snap-align: center;
+        border-radius: 8px;
+        padding-top: 150%;
+        .item__card{
+            background: #242424;
+            overflow-x: hidden;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            display: block;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            .shine {
+              display: none;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              background: #fff;
+              background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(50%, rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0)));
+              background: linear-gradient(to right, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+              pointer-events: none;
+              z-index: 3;
+              opacity: 0;
+              transform: skew(30deg);
+              animation: shine 0.75s linear 1;
+            }
+            &:hover{
+              .shine{
+                display: block;
+              }
+            }
+            img{
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+        }
     }
+  }
+}
+@keyframes shine {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  50% {
+    left: 25%;
+    opacity: .5;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
   }
 }
