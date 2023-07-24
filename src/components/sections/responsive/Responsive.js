@@ -15,8 +15,9 @@ import "swiper/css/navigation";
 // import { FreeMode, Pagination } from 'swiper';
 import { Navigation } from 'swiper';
 
-import AddToCartButton from '../../AddToCartButton/AddToCartButton';
-import Popup from 'reactjs-popup';
+import rightIcon from '../../../assets/images/icon/arrow-right.svg';
+// import AddToCartButton from '../../AddToCartButton/AddToCartButton';
+// import Popup from 'reactjs-popup';
 
 const Responsive = ({ data }) => {
     //   console.log(data['responsive_items'])
@@ -26,8 +27,9 @@ const Responsive = ({ data }) => {
         <section className='slider_wrapper ResponsiveWrapper'>
             <div className='container'>
                 <div className='title'>
-                    <Link to='/products/responsive_items' className='header'>
+                    <Link to='/products/responsive_items' className='header d-flex align-items-center'>
                         <h2>Top responsive items</h2>
+                        <div className='viewIcon'><span>View all</span><img src={rightIcon} alt='icon' width={24} height={24}/></div>
                     </Link>
                     <Link to='/products/responsive_items' className='viewBtn'>
                         View all

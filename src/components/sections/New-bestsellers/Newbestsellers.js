@@ -16,6 +16,7 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper';
 
 import AddToCartButton from '../../AddToCartButton/AddToCartButton';
+import rightIcon from '../../../assets/images/icon/arrow-right.svg';
 import Popup from 'reactjs-popup';
 
 const NewBestsellers = ({ data }) => {
@@ -25,8 +26,9 @@ const NewBestsellers = ({ data }) => {
     <section className='NewBestsellers_wrapper slider_wrapper'>
         <div className='container'>
             <div className='title'>
-                <Link to='/products/new_bestsellers' className='header'>
+                <Link to='/products/new_bestsellers' className='header d-flex align-items-center'>
                     <h2>New bestsellers</h2>
+                    <div className='viewIcon'><span>View all</span><img src={rightIcon} alt='icon' width={24} height={24}/></div>
                 </Link>
                 <Link to='/products/new_bestsellers' className='viewBtn'>
                     View all

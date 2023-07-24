@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper';
 
 import AddToCartButton from '../../AddToCartButton/AddToCartButton';
+import rightIcon from '../../../assets/images/icon/arrow-right.svg';
 import Popup from 'reactjs-popup';
 
 const HotUnder = ({ data }) => {
@@ -26,8 +27,9 @@ const HotUnder = ({ data }) => {
         <section className='slider_wrapper'>
             <div className='container'>
                 <div className='title'>
-                    <Link to='/products/hot_under_category' className='header'>
+                    <Link to='/products/hot_under_category' className='header d-flex align-items-center'>
                         <h2>Hot under $15</h2>
+                        <div className='viewIcon'><span>View all</span><img src={rightIcon} alt='icon' width={24} height={24}/></div>
                     </Link>
                     <Link to='/products/hot_under_category' className='viewBtn'>
                         View all

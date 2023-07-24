@@ -24,8 +24,41 @@
             margin-top:0;
         }
     }    
-    .viewIcon{
-        height: 24px;
+    a{
+        .viewIcon{
+            width: 24px;
+            height: 24px;
+            display: flex;
+            margin-left: 10px;
+            transition: all 0.5s ease;
+            span{
+                color: $primary-color;
+                width: 0px;
+                overflow: hidden;
+                transition: all 0.5s ease;
+                text-wrap: nowrap;
+            }
+            @media (max-width:575px){
+                display: none !important;
+            }
+        }
+        &:hover{         
+            .viewIcon{
+                width: 124px;
+                transition: all 0.5s ease;
+                span{
+                    width: 60px;
+                    margin-right: 5px;
+                    transition: all 0.5s ease;
+                }
+            }
+        }
+        &.viewBtn{
+            display: none !important;
+            @media (max-width:575px){
+                display: block !important;
+            }
+        }
     }
 }
 .cardSlider{

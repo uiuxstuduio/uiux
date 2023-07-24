@@ -21,7 +21,7 @@ const Trending = ({ data }) => {
                 <div className='title'>
                     <Link to='/products/best_selling_products' className='header d-flex align-items-center'>
                         <h2>Weekly bestsellers</h2>
-                        <span className='viewIcon'><img src={rightIcon} alt='icon' width={24} height={24}/></span>
+                        <div className='viewIcon'><span>View all</span><img src={rightIcon} alt='icon' width={24} height={24}/></div>
                     </Link>
                     <Link to='/products/best_selling_products' className='viewBtn'>
                         View all
