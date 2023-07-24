@@ -23,6 +23,9 @@
         @media (max-width:767px){
             margin-top:0;
         }
+    }    
+    .viewIcon{
+        height: 24px;
     }
 }
 .cardSlider{
@@ -310,11 +313,6 @@
         min-width: 280px;
         max-width: 280px;  
     }
-    // animation-name: scaling-out;
-    // animation-duration: .5s;
-    // animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-    // animation-iteration-count: 1;
-    // animation-fill-mode: both;
     .card-image-content {
         padding-top: 56.25%;
         position: relative;
@@ -402,13 +400,11 @@
         }
     }
 }
-
 @media screen and (max-width:1024px) {
     #popup-root{
        display: none; 
     }
 }
-
 @keyframes anvil {
     0% {
       transform: scale(1) translateY(0px);
@@ -429,4 +425,3 @@
 .popup-content {
     animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) ;
 }
-

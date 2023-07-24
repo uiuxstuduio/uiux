@@ -9,7 +9,8 @@ import "swiper/css/navigation";
 import { Navigation } from 'swiper';
 
 import AddToCartButton from '../../AddToCartButton/AddToCartButton';
-import Popup from 'reactjs-popup';
+import rightIcon from '../../../assets/images/icon/arrow-right.svg';
+import Popup from 'reactjs-popup'; 
 
 const Trending = ({ data }) => {
     const trendingData = data['best_selling_products'];
@@ -18,8 +19,9 @@ const Trending = ({ data }) => {
         <div className='trending_wrapper slider_wrapper'>
             <div className='container'>
                 <div className='title'>
-                    <Link to='/products/best_selling_products' className='header'>
+                    <Link to='/products/best_selling_products' className='header d-flex align-items-center'>
                         <h2>Weekly bestsellers</h2>
+                        <span className='viewIcon'><img src={rightIcon} alt='icon' width={24} height={24}/></span>
                     </Link>
                     <Link to='/products/best_selling_products' className='viewBtn'>
                         View all
