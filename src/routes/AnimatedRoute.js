@@ -18,6 +18,8 @@ import Checkout from '../modules/Checkout';
 import DefaultLayout from '../layouts';
 import ProjectSteps from '../modules/ProjectSteps/Index';
 import ThankYou from '../modules/ThankYou/Index';
+import CategoryPage from '../modules/CategoryPage/CategoryPage';
+import LivePreview from '../modules/LivePreview';
 
 const AnimatedRoute = () => {
   const location = useLocation();
@@ -32,6 +34,7 @@ const AnimatedRoute = () => {
           <Route element={<DefaultLayout component={<Settings />} />} path="/settings" />
           <Route element={<DefaultLayout component={<Profile />} />} path="/profile" />
           <Route element={<DefaultLayout component={<Checkout />} />} path="/checkout" />
+          {/* <Route element={<DefaultLayout component={<Purchases />} />} path="/purchases" /> */}
         </Route>
         {/* this will be login route */}
         <Route element={<DefaultLayout component={<Home />} />} path="/" />
@@ -40,10 +43,12 @@ const AnimatedRoute = () => {
         <Route element={<DefaultLayout component={<Products />} />} path="/products/:productTab" />
         <Route element={<ProjectSteps />} path="/steps" />
         <Route element={<DefaultLayout component={<ProductDetails />} />} path="/product-details/:id" />
+        <Route element={<DefaultLayout component={<CategoryPage />} />} path="/category/:id" />
         <Route element={<Login />} path="/login" />
         <Route element={<Signup />} path="/signup" />
         <Route element={<DefaultLayout component={<Cart />} />} path="/cart" />
         <Route element={<ThankYou />} path="/thankyou" />
+        <Route element={<LivePreview />} path="/preview/:id" />
         <Route element={<PageNotFound />} path="*" />
       </Routes>
     </AnimatePresence>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /* CSS */
 import './cart.scss';
@@ -10,13 +10,42 @@ import services2 from '../../assets/images/services/services-2.svg';
 import close from '../../assets/images/icon/close.svg';
 import unlock from '../../assets/images/icon/unlock.svg';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart, removeItemFromCart } from '../../redux/reducers/cartReducer.slice';
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
-  const subTotal = cartItems.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const getlist = await dispatch(getCart({ cart_key: cartItems?.sessionKey }));
+        console.log('getlist', getlist);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
+  
+
+
+
+
+  console.log('cartItems', cartItems)
+  const subTotal = cartItems.items.reduce((prev, curr) => prev + Number(curr.sale_price), 0);
   const extraPrices = 0;
   const total = subTotal + extraPrices;
+
+  const removeCartItem = (key) => {
+    const payload = {
+      key: key,
+      cart_key: cartItems?.sessionKey
+    };
+    dispatch(removeItemFromCart(payload))
+  }
+
+
   return (
     <>
       <section>
@@ -36,9 +65,9 @@ const Cart = () => {
                 </div>
                 <div className="inner_block">
                   <div className="card_block">
-                    {cartItems.length ? (
+                    {cartItems?.items.length ? (
                       <>
-                        {cartItems.map((item, index) => (
+                        {cartItems?.items.map((item, index) => (
                           <div className="single_card" key={index}>
                             <div className="card_view">
                               <div className="left_block">
@@ -46,7 +75,7 @@ const Cart = () => {
                                   <img src={item.theme_feature_img[0]} alt="icon" />
                                 </div>
                                 <div className="card_details">
-                                  <h2>{item.theme_name}</h2>
+                                  <h2><Link to={`/product-details/${item?.theme_id}`}>{item.theme_name}</Link></h2>
                                   <p>License type: {item.license_type}</p>
                                   <div className="rating">
                                     <img src={starYellow} alt="icon" />
@@ -58,7 +87,7 @@ const Cart = () => {
                                 </div>
                               </div>
                               <div className="right_block">
-                                <button className="closeIcon">
+                                <button className="closeIcon" type='button' onClick={() => removeCartItem(item?.key)}>
                                   <img src={close} alt="Close icon" />
                                 </button>
                                 <div className="price">
@@ -71,7 +100,7 @@ const Cart = () => {
                         ))}
                       </>
                     ) : (
-                      <div className="message-box text-center">
+                      <div className="message-box">
                         <h1 className="fw-bold opacity-50">Your cart is empty!</h1>
                         <h6 className="mt-3 mb-3 lg:mb-5 opacity-50">
                           You must add some items in order to checkout. You can find out lots of

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import designCardData from './designCardData';
 import saleIcons from '../../assets/images/icon/arrow-square.svg';
 

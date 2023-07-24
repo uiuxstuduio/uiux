@@ -44,17 +44,26 @@
 
   &-container {
     padding-block: 80px;
-
+    @media (max-width:767px) {
+      padding-block: 50px;      
+      text-align: center;
+    }
     .first-col {
       &>p {
         width: 60%;
         opacity: 50%;
+        @media (max-width:767px) {
+          width: 100%;
+        }
       }
 
       ul {
         gap: 3rem;
         flex-direction: column;
-
+        @media (max-width:767px) {
+          display: inline-flex !important;
+          text-align: left;
+        }
         li {
           gap: 1rem;
 
@@ -103,6 +112,11 @@
       textarea {
         resize: none;
         height: 150px;
+      }
+      @media (max-width:767px) {
+        .btn_wrapper{
+          margin: auto;
+        }
       }
     }
   }

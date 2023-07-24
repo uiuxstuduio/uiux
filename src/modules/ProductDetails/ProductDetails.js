@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
@@ -27,35 +27,35 @@ import 'swiper/css';
 import './productDetails.scss';
 import { themeDetails } from '../../services/pages.service';
 import { timeSince } from '../../utils/daysAgo/daysAgo';
-import { addToCart } from '../../services/cart.service';
-import { useDispatch, useSelector } from 'react-redux';
-import { hash } from '../../utils/hash';
-import { getCart, setCartSession } from '../../redux/reducers/cartReducer.slice';
+import {  useSelector } from 'react-redux';
+
 import { useStep, values as stepValues } from './useStepHook';
 import AddCollectionContent from './AddCollectionContent';
 import CreateCollectionContent from './CreateCollectionContent';
+import AddToCartButton from '../../components/AddToCartButton/AddToCartButton';
 const ProductDetails = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
+  // const {id} = useParams();
+  const themeid = useParams();
+  console.log('Current theme_id',themeid);
   const userLogin = useSelector((state) => state.user.user_login);
 
-  const cartData = useSelector((state) => state.cart);
-  const items = cartData.items.map((item) => item.id);
-  const [cartLoading, setCartLoading] = useState(false);
-  const inCart = items.includes(id);
+  // const cartData = useSelector((state) => state.cart);
+  // const items = cartData.items.map((item) => item.theme_id);
+  // const [cartLoading, setCartLoading] = useState(false);
+  // const inCart = items.includes(id);
 
+  // console.log('inCart', inCart);
   const collections = useSelector((state) => state.collections.collection);
   const [selectedCollection, setSelectedCollection] = useState(null);
-  const navigate = useNavigate();
   //loader overlay
   const [open, setOpen] = useState(true);
-  const [data, setData] = useState(null);
+  const [themeData, setThemeData] = useState(null);
   const [value, setValue] = React.useState('1');
   const { step, setToItem, setToCollection } = useStep();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  // console.log('themeData', themeData)
   //Modal show close
   const [show, setShow] = useState(false);
 
@@ -66,37 +66,16 @@ const ProductDetails = () => {
   };
   useEffect(() => {
     setOpen(true);
-    fetchDetails(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    fetchDetails(themeid?.id);
+  }, [themeid?.id]);
 
   const fetchDetails = async (id) => {
+    console.log('fetchDetails',id)
     const { data } = await themeDetails(id);
-    setData(data.data);
+    setThemeData(data.data);
     setOpen(false);
   };
-
-  const addToCartHandler = async () => {
-    setCartLoading(true);
-    const needGenerate = !cartData.expiry || cartData.expiry < Date.now();
-    let sessionKey, expiry;
-    if (!needGenerate) {
-      expiry = cartData.expiry;
-      sessionKey = cartData.sessionKey;
-    } else {
-      expiry = Date.now() + 60 * 60 * 24 * 1000;
-      sessionKey = hash();
-      dispatch(setCartSession({ sessionKey, expiry }));
-    }
-    const payload = {
-      product_id: id,
-      session_key: sessionKey
-    };
-    const addToCartRes = await addToCart(payload);
-    if (addToCartRes.status === 200) {
-      dispatch(getCart({ cart_key: sessionKey }));
-    }
-  };
+  // console.log('themeData',themeData);
 
   return (
     <>
@@ -113,48 +92,51 @@ const ProductDetails = () => {
         <CircularProgress color="inherit" />
       </Backdrop>
       <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        {data && (          
+        {themeData && (
           <>
             <div className="product_details">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="heading">
-                      <h2 className="text-capitalize">{data.theme_data.title}</h2>
+                      <h2 className="text-capitalize">{themeData.theme_data.title}</h2>
                       <div className="d-flex align-items-center ItemDiscription">
                         <div className="d-flex align-items-center">
                           <img src={doc} alt="Doc Icon" />
                           <span style={{ textTransform: 'capitalize' }}>
-                            {data.theme_data.other_filed.pages}
+                            {themeData.theme_data.other_filed.pages}
                           </span>
                         </div>
                         <div className="d-flex align-items-center">
                           <img src={download} alt="Doc Icon" />
-                          <span>{data.theme_data.other_filed.theme_download} Download</span>
+                          <span>{themeData.theme_data.other_filed.theme_download} Download</span>
                         </div>
                         <div className="d-flex align-items-center">
                           <img src={star} alt="Doc Icon" />
-                          <span>4.5/5</span>
+                          <span>{themeData?.review / 5 || '0/5'}</span>
                         </div>
                       </div>
                       <h2 className="text-capitalize">
-                        {!data.theme_data.sale_price ? (
-                          <p>$ {data.theme_data.regular_price}</p>
+                        {!themeData.theme_data.sale_price ? (
+                          <p>$ {themeData.theme_data.regular_price}</p>
                         ) : (
                           <>
                             <p className="d-inline-block me-2 opacity-50">
-                              <del>$ {data.theme_data.regular_price}</del>
+                              <del>$ {themeData.theme_data.regular_price}</del>
                             </p>
-                            <p className="d-inline-block">$ {data.theme_data.sale_price}</p>
+                            <p className="d-inline-block">$ {themeData.theme_data.sale_price}</p>
                           </>
                         )}
                       </h2>
                       <div className="btnBlock">
                         <div className="btn_group">
-                          <a className="btn_wrapper" href={data.theme_data.demo_url}>
+                          <Link className='btn_wrapper' target='_blank'
+                            to={{ pathname: `/preview/${themeData?.theme_data?.theme_id}` }}
+                          >
                             Live Preview
-                          </a>
-                          {inCart ? (
+                          </Link>
+                          <AddToCartButton productid={themeid?.id} forPagetoShowWhichDesign={1}/>
+                          {/* {inCart ? (
                             <button className="btn_wrapper light" onClick={() => navigate('/cart')}>
                               View In Cart
                             </button>
@@ -173,11 +155,12 @@ const ProductDetails = () => {
                                 </button>
                               ) : (
                                 <button className="btn_wrapper light" onClick={addToCartHandler}>
-                                  Buy Now
-                                </button>
+                                    Add to cart
+                                  </button>
+                                // 
                               )}
                             </>
-                          )}
+                          )} */}
                         </div>
                         <div className="share_group">
                           <Link to="/" className="img">
@@ -191,7 +174,7 @@ const ProductDetails = () => {
                           </Link>
                         </div>
                       </div>
-                      <p>{parse(data.theme_data.short_description)}</p>
+                      <p>{parse(themeData.theme_data.short_description)}</p>
                     </div>
                     <div className="productSlider">
                       <Swiper
@@ -218,7 +201,7 @@ const ProductDetails = () => {
                           }
                         }}
                       >
-                        {data.theme_data.theme_gallery.map((item, index) => (
+                        {themeData.theme_data.theme_gallery.map((item, index) => (
                           <SwiperSlide key={index}>
                             <div className="images_wrapper">
                               <img src={item} alt="treanding-slide" />
@@ -246,19 +229,19 @@ const ProductDetails = () => {
                                       <li>
                                         <span>Last Update</span>
                                         <div>
-                                          <span>{data.theme_data.description.last_update}</span>
+                                          <span>{themeData.theme_data.description.last_update}</span>
                                         </div>
                                       </li>
                                       <li>
                                         <span>Published</span>
                                         <div>
-                                          <span>{data.theme_data.description.published}</span>
+                                          <span>{themeData.theme_data.description.published}</span>
                                         </div>
                                       </li>
                                       <li>
                                         <span>Compatible With</span>
                                         <div>
-                                          {data.theme_data.description.compatible.map(
+                                          {themeData?.theme_data?.description?.compatible?.map(
                                             (item, index) => (
                                               <label
                                                 key={index}
@@ -275,7 +258,7 @@ const ProductDetails = () => {
                                       <li>
                                         <span>Compatible Browsers</span>
                                         <div>
-                                          {data.theme_data.description.compatible_browsers.map(
+                                          {themeData.theme_data.description.compatible_browsers.map(
                                             (item, index) => (
                                               <label
                                                 key={index}
@@ -292,14 +275,14 @@ const ProductDetails = () => {
                                       <li>
                                         <span>Documentation</span>
                                         <div>
-                                          <span>{data.theme_data.description.documented}</span>
+                                          <span>{themeData.theme_data.description.documented}</span>
                                         </div>
                                       </li>
                                       <li>
                                         <span>Tags</span>
                                         <div className="labels">
                                           <span>
-                                            {data.theme_data.description.tag.map((item, index) => (
+                                            {themeData.theme_data.description.tag.map((item, index) => (
                                               <label
                                                 key={index}
                                                 style={{
@@ -316,12 +299,12 @@ const ProductDetails = () => {
                                   </div>
                                   <div className="text_Wrapper">
                                     <h2>Overview:</h2>
-                                    <div>{parse(data.theme_data.overview)}</div>
-                                    {data.theme_data.pages && (
+                                    <div>{parse(themeData.theme_data.overview)}</div>
+                                    {themeData.theme_data.pages && (
                                       <>
                                         <h2>Pages:</h2>
                                         <ul className="tabType">
-                                          {data.theme_data.pages.map((item, index) => (
+                                          {themeData.theme_data.pages.map((item, index) => (
                                             <li key={index}>{item}</li>
                                           ))}
                                         </ul>
@@ -387,7 +370,7 @@ const ProductDetails = () => {
                           <TabPanel value="3">
                             <div className="row">
                               <div className="col-12">
-                                {data.theme_data.reviews.map((comment, index) => (
+                                {themeData.theme_data.reviews.map((comment, index) => (
                                   <div key={index} className="reviewBlock">
                                     <div className="starBlock">
                                       <img src={FillStar} alt="FillStar" />
@@ -436,7 +419,7 @@ const ProductDetails = () => {
                       selectedCollection={selectedCollection}
                       setSelectedCollection={setSelectedCollection}
                       setToCollection={setToCollection}
-                      themeId={id}
+                      themeId={themeid?.id}
                       close={() => setShow(false)}
                     />
                   </fieldset>

@@ -10,6 +10,8 @@ body {
     min-height: 100%;
     overflow-x: hidden;
     font-weight: normal;
+    // overflow-y: auto !important;
+    padding-left: 0 !important;
 }
 
 html {
@@ -18,13 +20,16 @@ html {
 
 section {
     margin-bottom: 100px;
+    @media screen and (max-width:1399px) {
+        margin-bottom: 60px;
+    }
 
     @media(max-width: 991px) {
-        margin-bottom: 80px;
+        margin-bottom: 50px;
     }
 
     @media(max-width: 767px) {
-        margin-bottom: 60px;
+        margin-bottom: 40px;
     }
 }
 

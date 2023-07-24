@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../../redux/reducers/authReducer.slice';
 import './header.scss';
-import logo from '../../../assets/images/logo.svg';
+import logo from '../../../assets/images/logo.svg'
 import cartIcon from '../../../assets/images/icon/cart.svg';
 import profileIcon from '../../../assets/images/icon/profile-icon.png';
 import tech1 from '../../../assets/images/technology/html.png';
@@ -14,17 +14,63 @@ import tech5 from '../../../assets/images/technology/affiliate.png';
 import tech6 from '../../../assets/images/technology/mobile-app.png';
 import tech7 from '../../../assets/images/technology/social-media.png';
 import tech8 from '../../../assets/images/technology/branding.png';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import PersonAdd from '@mui/icons-material/PersonAdd';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logoutHandler = () => {
     dispatch(logoutUser());
+    navigate('/')
   };
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.cart);
+  const menu = useSelector((state) => state.commonData.menuData);
+
+
+
+
+  const [anchorEl, setAnchorEl] = useState();
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (name) => {
+    setAnchorEl(null);
+    switch (name) {
+      case 'profile':
+        navigate('/profile')
+        break;
+      case 'settings':
+        navigate('/settings')
+        break;
+      case 'downloads':
+        navigate('/downloads')
+        break;
+      case 'favorites':
+        navigate('/favorites')
+        break;
+      default:
+        break;
+    }
+  };
+
+
   return (
     <header>
-      <nav className="navbar navbar-expand-xl">
+      <nav className="navbar navbar-expand-xl aa">
         <div className="container">
           <div className="logo">
             <Link to="/" className="navbar-brand">
@@ -32,7 +78,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="right_wrapper">
-            <div className="navbar_block">
+            <div className="navbar_block d-none d-md-block">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -97,10 +143,23 @@ const Header = () => {
                         <div className="category_modal">
                           <div className="top_modal">
                             <div className="row">
-                              <div className="col-xl-6 col-12">
+                              <div className="col-xl-12 col-12">
                                 <div className="col_megamenu">
                                   <ul className="tech_temp">
-                                    <li>
+                                    {menu?.map((menu, i) => (
+                                      <li key={i}>
+                                        <div className="tech_img ht">
+                                          <img src={menu?.category_image || 'https://dummyimage.com/48x48/f208f2/ffffff'} alt="HTML Logo" />
+                                        </div>
+                                        <div className="head_title">
+                                          <Link to={{ pathname: `/category/${menu.cate_id}` }} state={{ name: menu?.theme_categorie }}>{menu?.theme_categorie}</Link>
+                                          <p>{menu?.category_description || 'It is a long established fact that a reader will be distracted by'}
+                                          </p>
+                                        </div>
+                                      </li>
+                                    ))
+                                    }
+                                    {/* <li>
                                       <div className="tech_img ht">
                                         <img src={tech1} alt="HTML Logo" />
                                       </div>
@@ -124,10 +183,34 @@ const Header = () => {
                                         </p>
                                       </div>
                                     </li>
+                                    <li>
+                                      <div className="tech_img wp">
+                                        <img src={tech3} alt="WordPress Theme" />
+                                      </div>
+                                      <div className="head_title">
+                                        <a href="/">Wordpress Theme</a>
+                                        <p>
+                                          It is a long established fact that a reader will be
+                                          distracted by{' '}
+                                        </p>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div className="tech_img sp">
+                                        <img src={tech4} alt="Shopify Theme" />
+                                      </div>
+                                      <div className="head_title">
+                                        <a href="/">Shopify theme</a>
+                                        <p>
+                                          It is a long established fact that a reader will be
+                                          distracted by{' '}
+                                        </p>
+                                      </div>
+                                    </li>  */}
                                   </ul>
                                 </div>
                               </div>
-                              <div className="col-xl-6 col-12">
+                              <div className="col-xl-6 col-12 d-none">
                                 <div className="col_megamenu">
                                   <ul className="tech_temp">
                                     <li>
@@ -159,7 +242,7 @@ const Header = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="bottom_modal">
+                          <div className="bottom_modal d-none">
                             <div className="row">
                               <div className="col-xl-6 col-12">
                                 <div className="col_megamenu">
@@ -221,16 +304,77 @@ const Header = () => {
                 <>
                   <div className="profile_nav">
                     <li className="nav-item dropdown">
+                      <Tooltip title="Account settings">
+                        <IconButton
+                          onClick={handleClick}
+                          size="small"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? 'account-menu' : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? 'true' : undefined}
+                        >
+                          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                          {/* <span className="ms-2" style={{ textTransform: 'capitalize' }}> {user.user_login} </span> */}
+
+                        </IconButton>
+                      </Tooltip>
+                      <Menu
+                        anchorEl={anchorEl}
+                        id="account-menu"
+                        open={open}
+                        onClose={handleClose}
+                        onClick={handleClose}
+                        PaperProps={{
+                          elevation: 0,
+                          sx: {
+                            overflow: 'visible',
+                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                            mt: 1.5,
+                            '& .MuiAvatar-root': {
+                              width: 32,
+                              height: 32,
+                              ml: -0.5,
+                              mr: 1,
+                            },
+                            '&:before': {
+                              content: '""',
+                              display: 'block',
+                              position: 'absolute',
+                              top: 0,
+                              right: 14,
+                              width: 10,
+                              height: 10,
+                              bgcolor: 'background.paper',
+                              transform: 'translateY(-50%) rotate(45deg)',
+                              zIndex: 0,
+                            },
+                          },
+                        }}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                      >
+                        <MenuItem onClick={() => handleClose('profile')}>
+                           My Account
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem onClick={() => logoutHandler('logout')}>
+                          <ListItemIcon>
+                            <Logout fontSize="small" />
+                          </ListItemIcon>
+                          Logout
+                        </MenuItem>
+                      </Menu>
+
                       <Link
-                        className="nav-link dropdown-toggle"
+                        className="nav-link dropdown-toggle d-none"
                         to="#"
                         id="navbarDropdown"
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <img src={profileIcon} alt="User Icon" />
-                        <span style={{ textTransform: 'capitalize' }}> {user.user_login} </span>
+                        {/* <img src={profileIcon} alt="User Icon" /> */}
+                        <AccountCircleOutlinedIcon />
                         <svg
                           width="17"
                           height="16"
@@ -283,19 +427,26 @@ const Header = () => {
                   </div>
                 </>
               ) : (
-                <div className="d-none d-md-flex align-items-center btns">
-                  <Link to="/login" className="btn_wrapper">
-                    Login
-                  </Link>
-                  <Link to="/signup" className="btn_wrapper light">
-                    Sign Up
-                  </Link>
-                </div>
+                <>
+                  <div className="d-none d-md-flex align-items-center btns">
+                    <Link to="/login" className="btn_wrapper">
+                      Login
+                    </Link>
+                    <Link to="/signup" className="btn_wrapper light">
+                      Sign Up
+                    </Link>
+                  </div>
+                  <div className="d-flex d-md-none align-items-center btns mobile-btn">
+                    <Link to="/login" className="btn_wrapper">
+                      Login
+                    </Link>
+                  </div>
+                </>
               )}
-              <Link to="/cart">
+              <Link to="/cart" className='d-none d-md-block'>
                 <div className="cart_wrapper position-relative">
                   <img src={cartIcon} alt="Cart Icon" />
-                  {cart.items.length !== 0 && <div className="notification"></div>}
+                  {cart.items.length !== 0 && <div className="notification">{cart.items.length || 0}</div>}
                 </div>
               </Link>
             </div>

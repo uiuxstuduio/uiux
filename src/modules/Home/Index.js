@@ -11,7 +11,7 @@ import './home.scss';
 /* IMAGES */
 import { Backdrop, CircularProgress } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import collection from '../../assets/images/icon/collection.svg';
 import scale from '../../assets/images/icon/scale.svg';
 import wallet from '../../assets/images/icon/wallet.svg';
@@ -32,13 +32,15 @@ const Home = () => {
     getData();
   }, []);
 
+
+
   const getData = async () => {
     // const { data } = await getHomePageContent();
     const { data } = await newHomePage();
-    // console.log('data',data)
     setData(data.data);
     setOpen(false);
   };
+
 
   return (
     <>
@@ -59,30 +61,32 @@ const Home = () => {
         {Object.keys(data).length !== 0 &&
           Object.keys(data).map((key, index) => {
             // console.log("KEY", key)
-            if (index === 1)
+            if (index === 1) {
               return (
                 <Fragment key={index}>
-                  {user.user_id ? (<Banner data={data} />) : (<LoginBanner />)}
+                  {user.user_id ? <Banner data={data} /> : <LoginBanner />}
                 </Fragment>
               );
-            else if (index === 2)
+            } else if (index === 2) {
               return (
-                <section key={index}>
+                <Fragment key={index}>
                   <Trending data={data} />
-                </section>
+                </Fragment>
               );
-            else if (index === 3)
+            } else if (index === 3) {
               return (
                 <Fragment key={index}>
                   <HotUnder data={data} />
                 </Fragment>
               );
-            else if (index === 4)
+            } else if (index === 4) {
               return (
                 <Fragment key={index}>
                   <NewBestsellers data={data} />
                 </Fragment>
               );
+            }
+            return null; // Add this default return statement
           })}
 
 
@@ -90,7 +94,7 @@ const Home = () => {
 
         <Responsive data={data} />
 
-        <section className="normal_wrapper">
+        <section className="normal_wrapper download_Wrapper">
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-5">

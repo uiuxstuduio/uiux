@@ -1,6 +1,9 @@
 @import '../../../assets/scss/abstracts/variables';
 
 footer{
+    @media (max-width:767px){
+        margin-bottom: 60px;
+    }
     .footer_techno_block{
         background: $primary-color url(../../../assets/images/techno-bkg.png) no-repeat;
         background-position: right 0 bottom;

@@ -2,7 +2,16 @@
 
 /* NORMAL SECTION CSS START HERE */
 .normal_wrapper{
-    // margin-bottom: 100px;
+    margin-bottom: 100px;
+    padding-top: 70px;
+    @media screen and (max-width:1399px) {
+        padding-top: 30px;
+        margin-bottom: 60px;
+    }
+    @media screen and (max-width:767px) {
+        padding-top: 10px;
+        margin-bottom: 40px;
+    }
     .heading{
         padding-right: 50px;
         @media screen and (max-width:991px) {
@@ -24,7 +33,7 @@
 
 /* FEATURE SECTION CSS START HERE */
 .features_wrapper{
-    padding-top: 40px;
+    // padding-top: 40px;
     @media screen and (max-width:767px) {
         padding-top: 0;
     }
